@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EmbeddedViewRef, ViewContainerRef, ViewChild, Input, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EmbeddedViewRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ISegment, Segment } from '../../services/duo-pane-information.service';
 
 @Component({

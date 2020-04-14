@@ -1,6 +1,30 @@
 {
   "name": "duo-pane-library",
   "version": "0.0.1",
+  "schematic": "./schematics/collection.json",
+  "description": "A library for Angular projects to easily add a two pane view for desktops, foldables and dual screen devices.",
+  "author": {
+    "name": "Malte Reimann"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MalteRei/angular-two-pane"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "directive",
+    "dual-screen",
+    "foldables"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/duo-pane-library/",
+    "copy:files": "cp --parents -p schematics/*/files/** ../../dist/duo-pane-library/",
+    "copy:collection": "cp schematics/collection.json ../../dist/duo-pane-library/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection"
+  },
   "peerDependencies": {
     "@angular/common": "^9.1.1",
     "@angular/core": "^9.1.1",

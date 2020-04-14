@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class DuoPaneInformationService {
 
   public static readonly ns = '__foldables__';
-  private Spanning: SpanningMode = 'single-fold-vertical';
+  private Spanning: SpanningMode = 'none';
   private FoldSize = 0;
   private BrowserShellSize = 0;
   private Segments: ISegment[] = null;
@@ -34,7 +34,7 @@ export class DuoPaneInformationService {
 
   }
 
- 
+
   public addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void {
     this.eventTarget.addEventListener(type, listener, options);
   }
@@ -94,18 +94,17 @@ export class DuoPaneInformationService {
 
   public getTwoLargestSegments(): ISegment[] {
     const segments = this.windowSegments;
-    if(segments.length > 2) {
+    if (segments.length > 2) {
       const twoLargestSegments = [null, null];
       let largestSize = 0;
       for (const segment of segments) {
         const segmentSize = segment.height * segment.width;
-        if(segmentSize >= largestSize) {
+        if (segmentSize >= largestSize) {
           largestSize = segmentSize;
           twoLargestSegments[0] = twoLargestSegments[1];
           twoLargestSegments[1] = segment;
         }
       }
-      console.dir(twoLargestSegments);
       return twoLargestSegments;
     } else {
       return segments;
@@ -128,7 +127,7 @@ export class DuoPaneInformationService {
       return [
         new Segment(width, screenCenter - this.foldSize / 2, 0, 0),
         new Segment(width, this.foldSize, screenCenter - this.foldSize / 2, 0),
-        new Segment(width, window.innerHeight, screenCenter + this.foldSize / 2, 0 )
+        new Segment(width, window.innerHeight, screenCenter + this.foldSize / 2, 0)
       ];
     }
     if (this.spanning === 'single-fold-vertical') {
