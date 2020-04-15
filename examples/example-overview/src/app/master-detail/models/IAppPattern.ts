@@ -1,7 +1,7 @@
 
 export interface IAppPattern{
     name: string;
-    description: string;
+    paragraphs: string[];
     pictureLink: URL;
     lookAtLink: string;
 }

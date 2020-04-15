@@ -8,12 +8,12 @@ export class AppPattern implements IAppPattern{
     public set name(value: string) {
         this.Name = value;
     }
-    private Description: string;
-    public get description(): string {
-        return this.Description;
+    private Paragraphs: string[];
+    public get paragraphs(): string[] {
+        return this.Paragraphs;
     }
-    public set description(value: string) {
-        this.Description = value;
+    public set paragraphs(value: string[]) {
+        this.Paragraphs = value;
     }
     private PictureLink: URL;
     public get pictureLink(): URL {
@@ -30,9 +30,9 @@ export class AppPattern implements IAppPattern{
         this.LookAtLink = value;
     }
 
-    constructor(name: string, description: string, pictureLink: URL, lookAtLink: string) {
+    constructor(name: string, paragraphs: string[], pictureLink: URL, lookAtLink: string) {
         this.name = name;
-        this.description = description;
+        this.paragraphs = paragraphs;
         this.pictureLink = pictureLink;
         this.lookAtLink = lookAtLink;
     }

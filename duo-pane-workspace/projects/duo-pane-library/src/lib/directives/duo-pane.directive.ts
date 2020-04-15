@@ -1,6 +1,9 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, Input, Output, TemplateRef, ViewContainerRef, Inject } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, Input, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DuoPaneComponent } from '../components/duo-pane/duo-pane.component';
-import { DuoPaneInformationService, ISegment, Segment, SpanningMode } from '../services/duo-pane-information.service';
+import { DuoPaneInformationService } from '../services/duo-pane-information.service';
+import { SpanningMode } from '../models/SpanningMode';
+import { ISegment } from '../models/ISegment';
+import { Segment } from '../models/Segment';
 
 @Directive({
   selector: '[duoPane]'

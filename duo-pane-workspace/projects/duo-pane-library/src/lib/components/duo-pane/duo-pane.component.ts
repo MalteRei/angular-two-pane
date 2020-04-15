@@ -1,5 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EmbeddedViewRef, Input, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { ISegment, Segment } from '../../services/duo-pane-information.service';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, TemplateRef, ViewChild, ViewContainerRef, EmbeddedViewRef } from '@angular/core';
+import { ISegment } from '../../models/ISegment';
+import { Segment } from '../../models/Segment';
 
 @Component({
   selector: 'duo-pane',
@@ -8,7 +9,7 @@ import { ISegment, Segment } from '../../services/duo-pane-information.service';
 })
 export class DuoPaneComponent implements AfterViewInit {
 
-  @ViewChild('viewContainer', {read: ViewContainerRef, static: true}) viewContainerRef: ViewContainerRef;
+  @ViewChild('viewContainer', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
   private embeddedViewRef: EmbeddedViewRef<any> = null;
 

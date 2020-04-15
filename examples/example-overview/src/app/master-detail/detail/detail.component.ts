@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppPatternsService } from '../app-patterns.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appPatternService: AppPatternsService) { }
 
   ngOnInit(): void {
+  }
+
+  public getSelectedPattern() {
+    console.dir(this.appPatternService.selectedAppPattern);
+    return this.appPatternService.selectedAppPattern;
+  }
+
+  public closeDetail() {
+    this.appPatternService.selectedAppPattern = undefined;
   }
 
 }
