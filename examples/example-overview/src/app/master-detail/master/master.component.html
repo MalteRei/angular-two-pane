@@ -1,10 +1,10 @@
 <div class="master-container">
-    <button class="master-card" *ngFor="let pattern of listAppPatterns()"  (click)="selectPattern(pattern)">
+    <button  type="button" tabindex="0" class="master-card" *ngFor="let pattern of listAppPatterns()"  (click)="selectPattern(pattern)" [class.master-card-selected]="selectedPattern === pattern">
         <div class="master-icon">
             <app-master-detail-icon ></app-master-detail-icon>
 
         </div>
-        <h2 class="master-title">{{pattern.name}}</h2>
+        <h3 class="master-title">{{pattern.name}}</h3>
         
     </button>
 </div>

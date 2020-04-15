@@ -8,13 +8,14 @@ import { AppPatternsService } from '../app-patterns.service';
 })
 export class MasterDetailComponent implements OnInit {
 
-  constructor(private appPatternsService: AppPatternsService) { }
+  constructor(public appPatternsService: AppPatternsService) { }
 
   ngOnInit(): void {
   }
 
   public ensureDetailPaneVisible() {
-    return this.appPatternsService.selectedAppPattern != null && this.appPatternsService != undefined;
+    console.log(this.appPatternsService.selectedAppPattern);
+    return this.appPatternsService.selectedAppPattern !== null && this.appPatternsService.selectedAppPattern !== undefined;
   }
 
 }

@@ -23,7 +23,6 @@
     /*color-tertiary and color-quaternary can be used as a muted accent on top of color-primary and color-secondary.*/
     --color-tertiary: #D2D0CE;
     --color-quaternary: #A19F9D;
-    --color-border: #C8C6C4;
     /*color-acrylic is for background blur and transparency.*/
     --color-acrylic: rgba(255,255,255,0.3);
     --color-primary-transparent: rgba(255, 255, 255, 0.9);
@@ -44,7 +43,6 @@
         --color-secondary: #252423;
         --color-tertiary: #3B3A39;
         --color-quaternary: #797775;
-        --color-border: #484644;
         --color-acrylic: rgba(26,26,26,.3);
         --color-primary-transparent: rgba(27, 26, 25, 0.7);
         --color-secondary-transparent: rgba(37, 36, 35, 0.8);
@@ -204,7 +202,7 @@ html, body {
 }
 body {
     margin: 0;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

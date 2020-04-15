@@ -23,4 +23,8 @@ export class MasterComponent implements OnInit {
     this.appPatternsService.selectedAppPattern = selectedPattern;
   }
 
+  public get selectedPattern() {
+    return this.appPatternsService.selectedAppPattern;
+  }
+
 }
