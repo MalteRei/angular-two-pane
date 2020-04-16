@@ -42,5 +42,36 @@ export class BookService {
     //TODO: continue https://docs.microsoft.com/en-us/dual-screen/introduction#dual-screen-user-experience-considerations
   ]);
 
+  private CurrentPageIndex = 0;
+
+  public get currentPageIndex() {
+    return this.CurrentPageIndex;
+  }
+
+  public currentPage() {
+    return this.book.pages[this.CurrentPageIndex];
+  }
+
+  public nextPage() {
+    if (this.hasNextPage()) {
+      ++this.CurrentPageIndex;
+    }
+  }
+
+  public previousPage() {
+    if (this.hasPreviousPage()) {
+      --this.CurrentPageIndex;
+    }
+  }
+
+  public hasNextPage() {
+    return this.CurrentPageIndex < this.book.pages.length - 1;
+  }
+
+  public hasPreviousPage() {
+    return this.CurrentPageIndex > 0;
+  }
+
   constructor() { }
+
 }

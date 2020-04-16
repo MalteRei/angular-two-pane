@@ -1,0 +1,41 @@
+.paragraph-content{
+    margin: 8px;
+    margin-top: 4px;
+}
+
+.paragraph-heading{
+    margin: 8px;
+    margin-top: 8px;
+}
+
+.page-title{
+    margin: 8px;
+}
+
+.page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+footer{
+    background-color: pink;
+    align-self: flex-end;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    -ms-touch-action: none;
+        /* // [START touch-action-example] */
+        /* Pass all touches to javascript */
+        touch-action: none;
+        /* // [END touch-action-example] */
+}

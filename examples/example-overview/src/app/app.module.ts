@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MasterDetailModule } from './master-detail/master-detail.module';
+import { TwoPageModule } from './two-page/two-page.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { MasterDetailModule } from './master-detail/master-detail.module';
   ],
   imports: [
     BrowserModule,
+    TwoPageModule,
     MasterDetailModule,
     AppRoutingModule,
   ],

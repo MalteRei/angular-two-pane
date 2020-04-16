@@ -248,6 +248,23 @@ button{
   border-image: initial;
   text-decoration: none;
   border-radius: 4px;
+  text-overflow: ellipsis;
+}
+
+
+button:disabled{
+    background-color: var(--color-secondary);
+    color: var(--color-quaternary);
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+    outline: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    text-decoration: none;
+    border-color: var(--color-secondary);
+    
 }
 
 a{

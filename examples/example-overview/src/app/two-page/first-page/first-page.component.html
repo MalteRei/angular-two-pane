@@ -1,1 +1,16 @@
-<p>first-page works!</p>
+<div class="page">
+    <main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle" [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle" [style.transform]="transformStyle">
+        <h5 class="page-title" *ngIf="titleToDisplay()">{{titleToDisplay()}}</h5>
+        <div *ngFor="let paragraph of paragraphsToDisplay()">
+            <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
+            <p class="paragraph-content">{{paragraph.content}}</p>
+        </div>
+    </main>
+    
+<footer>
+    <button [disabled]="disablePreviousPageButton()" (click)="previousPage()">Previous</button>
+    <p>{{pageNumber()}}</p>
+    <button [disabled]="disableNextPageButton()" (click)="nextPage()">Next</button>
+</footer>
+</div>
+
