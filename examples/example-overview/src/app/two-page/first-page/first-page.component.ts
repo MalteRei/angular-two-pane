@@ -2,14 +2,65 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener, 
 import { BookService } from '../book.service';
 import { IPoint } from '../models/IPoint';
 import { Point } from '../models/Point';
+import { IPage } from '../models/IPage';
+import { trigger, transition, style, animate, keyframes, state, AnimationFactory, AnimationBuilder } from '@angular/animations';
 
 @Component({
   selector: 'app-first-page',
   templateUrl: './first-page.component.html',
-  styleUrls: ['./first-page.component.css']
+  styleUrls: ['./first-page.component.css'],
+  animations: [
+    // animation triggers go here
+    trigger('pageTrigger', [
+      state('previous', style({
+        transform: 'scale(0.9)'
+      })),
+      state('current', style({
+        transform: 'scale(1)'
+      })),
+      state('next', style({
+        transform: 'scale(0.9)'
+      })),
+      transition('current => *', [
+        animate('500ms cubic-bezier(0.8, 0, 0.2, 1)')
+      ]),
+      transition('* => current', [
+        animate('500ms 1.5s cubic-bezier(0.8, 0, 0.2, 1)')
+      ])
+    ]),
+    trigger('changePageTrigger', [
+
+      transition(':increment', [
+        transition(':leave', animate('500ms', keyframes([
+          style({ transform: 'scale(1) translateX(0)', offset: 0 }),
+          style({ transform: 'scale(0.9) translateX(0)', offset: 0.25 }),
+          style({ transform: 'scale(0.9) translateX(-160%)', offset: 1.0 })
+        ]))),
+        transition(':enter',
+          animate('500ms', keyframes([
+            style({ transform: 'scale(0.9) translateX(160%)', offset: 0 }),
+            style({ transform: 'scale(0.9) translateX(0)', offset: 0.75 }),
+            style({ transform: 'scale(1) translateX(0)', offset: 1.0 })
+          ])))
+      ]),
+      transition(':decrement', [
+        transition(':enter', animate('500ms', keyframes([
+          style({ transform: 'scale(0.9) translateX(-160%)', offset: 0 }),
+          style({ transform: 'scale(0.9) translateX(0)', offset: 0.75 }),
+          style({ transform: 'scale(1) translateX(0)', offset: 1.0 })
+        ]))),
+        transition(':leave',
+          animate('500ms', keyframes([
+            style({ transform: 'scale(1) translateX(0)', offset: 0 }),
+            style({ transform: 'scale(0.9) translateX(0)', offset: 0.25 }),
+            style({ transform: 'scale(0.9) translateX(160%)', offset: 1.0 })
+          ])))
+      ])
+
+    ]),
+  ]
 })
 export class FirstPageComponent implements OnInit, AfterViewInit {
-
 
   @ViewChild('firstPage') swipeElement: ElementRef;
 
@@ -24,9 +75,70 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   private slopValue = 0;
   private handleSize = 10;
 
-  constructor(private bookService: BookService, private renderer: Renderer2) { }
+
+  constructor(private bookService: BookService, private renderer: Renderer2, private builder: AnimationBuilder) { }
 
   ngOnInit(): void {
+
+  }
+
+  public pageState(index: number){
+    if(index === this.bookService.currentPageIndex) {
+      return 'current';
+    } else if(index < this.bookService.currentPageIndex) {
+      return 'previous';
+    } else {
+      return 'next';
+    }
+  }
+
+  public pages() {
+    return this.bookService.book.pages;
+  }
+  public paragraphsToDisplay() {
+    return this.bookService.currentPage().paragraphs;
+  }
+
+  public titleToDisplay(): string | undefined {
+    return this.bookService.currentPage().title;
+  }
+
+  public pageNumber() {
+    return this.bookService.currentPageIndex;
+  }
+
+  public nextPage() {
+
+    this.bookService.nextPage();
+
+    const myAnimation: AnimationFactory = this.builder.build([
+      animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
+    ]);
+
+    const player = myAnimation.create(this.swipeElement.nativeElement);
+    player.play();
+
+  }
+
+
+  public previousPage() {
+    this.bookService.previousPage();
+    const myAnimation: AnimationFactory = this.builder.build([
+      animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
+    ]);
+
+    const player = myAnimation.create(this.swipeElement.nativeElement);
+    player.play();
+
+
+  }
+
+  public disableNextPageButton() {
+    return !this.bookService.hasNextPage();
+  }
+
+  public disablePreviousPageButton() {
+    return !this.bookService.hasPreviousPage();
   }
 
   ngAfterViewInit() {
@@ -255,34 +367,7 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
     this.rafPending = false;
   }
 
-  public paragraphsToDisplay() {
-    return this.bookService.currentPage().paragraphs;
-  }
 
-  public titleToDisplay(): string | undefined {
-    return this.bookService.currentPage().title;
-  }
-
-  public pageNumber() {
-    return this.bookService.currentPageIndex;
-  }
-
-  public nextPage() {
-    this.bookService.nextPage();
-  }
-
-
-  public previousPage() {
-    this.bookService.previousPage();
-  }
-
-  public disableNextPageButton() {
-    return !this.bookService.hasNextPage();
-  }
-
-  public disablePreviousPageButton() {
-    return !this.bookService.hasPreviousPage();
-  }
 
 }
 

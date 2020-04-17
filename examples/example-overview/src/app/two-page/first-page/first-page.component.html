@@ -1,5 +1,5 @@
 <div class="page">
-    <main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle" [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle" [style.transform]="transformStyle">
+    <!-- <main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle" [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle" [style.transform]="transformStyle">
         <div class="page-content">
             <h5 class="page-title" *ngIf="titleToDisplay()">{{titleToDisplay()}}</h5>
             <div *ngFor="let paragraph of paragraphsToDisplay()">
@@ -8,12 +8,35 @@
             </div>
         </div>
         
-    </main>
-    
-<footer>
-    <button [disabled]="disablePreviousPageButton()" (click)="previousPage()">Previous</button>
-    <p>{{pageNumber()}}</p>
-    <button [disabled]="disableNextPageButton()" (click)="nextPage()">Next</button>
-</footer>
-</div>
+    </main>-->
+    <!--<main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle"
+        [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle"
+        [style.transform]="transformStyle">
+        <div [@changePageTrigger]="pageNumber()" *ngFor="let page of currentPages" class="page-text">
+            <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
+            <div *ngFor="let paragraph of page.paragraphs">
+                <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
+                <p class="paragraph-content">{{paragraph.content}}</p>
+            </div>
+        </div>
+    </main>-->
 
+    <main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle"
+    [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle"
+    [style.transform]="transformStyle">
+        <div class="page-text" *ngFor="let page of pages(); let i = index" [@pageTrigger]="pageState(i)">
+            <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
+            <div *ngFor="let paragraph of page.paragraphs">
+                <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
+                <p class="paragraph-content">{{paragraph.content}}</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <button [disabled]="disablePreviousPageButton()" (click)="previousPage()">Previous</button>
+        <p>{{pageNumber()}}</p>
+        <button [disabled]="disableNextPageButton()" (click)="nextPage()">Next</button>
+    </footer>
+</div>
