@@ -40,8 +40,7 @@ main{
         touch-action: none;
         /* // [END touch-action-example] */
 
-        background-color: transparent;
-
+        background-color: red;
 
 }
 .page-content{

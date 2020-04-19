@@ -1,11 +1,7 @@
 <ng-template [duoPane] [secondaryPane]="secondPage" twoPaneMinWidthSingleSegment=800
     twoPaneSpanningModeSingleSegment="single-fold-vertical">
     <div class="page">
-        <main [@pageChangeTrigger]="{value: pageNumber(), params: {pageIndex: pageOffsetPercentage()}}"
-        (@pageChangeTrigger.start)="onAnimationEvent($event)"
-    (@pageChangeTrigger.done)="onAnimationEvent($event)">
-            <app-first-page class="main-content"></app-first-page>
-        </main>
+        <app-first-page class="main-content"></app-first-page>
         <footer>
             <button [disabled]="disablePreviousPageButton()" (click)="previousPage()">Previous</button>
             <p>{{pageNumber()}}</p>
@@ -14,10 +10,8 @@
     </div>
 </ng-template>
 <ng-template #secondPage>
-    <div class="page">
-        <main #firstPage>
-            <app-first-page class="main-content"></app-first-page>
-        </main>
-    </div>
+    
+            <app-first-page></app-first-page>
+        
     
 </ng-template>

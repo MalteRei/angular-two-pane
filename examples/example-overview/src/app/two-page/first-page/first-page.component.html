@@ -24,12 +24,18 @@
         [style.transform]="transformStyle"-->
 
    <!-- <main #firstPage >-->
-        <div class="page-content" *ngFor="let page of pages(); let i = index" [@pageTrigger]="pageState(i)">
-            <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
-            <div *ngFor="let paragraph of page.paragraphs">
-                <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
-                <p class="paragraph-content">{{paragraph.content}}</p>
-            </div>
-        </div>
+       <main [@pagesTrigger]=currentPageIndex()
+       (@pagesTrigger.start)="onAnimationEvent($event)"
+    (@pagesTrigger.done)="onAnimationEvent($event)">
+           <div class="page-content" *ngFor="let page of currentPages; let i = index" >
+                        <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
+                        <div *ngFor="let paragraph of page.paragraphs">
+                            <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
+                            <p class="paragraph-content">{{paragraph.content}}</p>
+                        </div>
+                    </div>
+                </main>
+            
+        
     
    <!-- </main>-->

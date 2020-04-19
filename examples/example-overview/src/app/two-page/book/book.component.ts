@@ -54,7 +54,7 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   //@ViewChild('firstPage') public swipeElement: ElementRef;
 
-  @ViewChildren(FirstPageComponent, { read: ElementRef }) public pages: QueryList<ElementRef>;
+  @ViewChildren(FirstPageComponent) public pages: QueryList<FirstPageComponent>;
 
   private rafPending = false;
   private initialTouchPos: IPoint = null;
@@ -94,6 +94,10 @@ export class BookComponent implements OnInit, AfterViewInit {
 
     this.bookService.nextPage();
 
+    for (const page of this.pages) {
+      page.next();
+    }
+
     /* const myAnimation: AnimationFactory = this.builder.build([
        animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
      ]);
@@ -110,6 +114,9 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   public previousPage() {
     this.bookService.previousPage();
+    for (const page of this.pages) {
+      page.previous();
+    }
     /* const myAnimation: AnimationFactory = this.builder.build([
        animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
      ]);
@@ -126,10 +133,10 @@ export class BookComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.updateSwipeItemWidth();
+   // this.updateSwipeItemWidth();
     /* // [START addlisteners] */
     // Check if pointer events are supported.
-    if (window.PointerEvent) {
+   /* if (window.PointerEvent) {
       // Add Pointer Event Listener
       //TODO: destroy event listeners: https://stackoverflow.com/a/47106904 + add render listen for the other event listeners.
       for (const page of this.pages) {
@@ -154,7 +161,7 @@ export class BookComponent implements OnInit, AfterViewInit {
       }
 
 
-    }
+    }*/
     /* // [END addlisteners] */
   }
 
@@ -167,7 +174,7 @@ export class BookComponent implements OnInit, AfterViewInit {
   private updateSwipeItemWidth() {
     const firstPage = this.pages.first;
     if (firstPage) {
-      this.slopValue = firstPage.nativeElement.clientWidth * (1 / 4);
+     // this.slopValue = firstPage.nativeElement.clientWidth * (1 / 4);
     }
 
   }
