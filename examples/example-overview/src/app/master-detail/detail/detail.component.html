@@ -3,7 +3,10 @@
         <div [style.background-image]="'url('+getSelectedPattern().pictureLink+')'" class="detail-header">
             <div class="detail-header-content">
                 <h4 class="detail-title">{{getSelectedPattern().name}}</h4>
-                <button (click)="closeDetail()" aria-label="Close" role="button" tabindex="0" type="button" aria-roledescription="button" class="detail-close-button"><app-close-icon aria-hidden="true"></app-close-icon></button>
+                <button (click)="closeDetail()" aria-label="Close" role="button" tabindex="0" type="button"
+                    aria-roledescription="button" class="detail-close-button">
+                    <i class="ms-Icon ms-Icon--ChromeClose" aria-hidden="true"></i>
+                                    </button>
             </div>
         </div>
         <div class="detail-content">
@@ -13,8 +16,9 @@
         </div>
 
         <div class="detail-footer">
-            <a *ngIf="getSelectedPattern().lookAtLink" [routerLink]="getSelectedPattern().lookAtLink" aria-label="Go to example" role="button" tabindex="0" aria-roledescription="button">
-                Try
+            <a *ngIf="getSelectedPattern().lookAtLink" [routerLink]="getSelectedPattern().lookAtLink"
+                aria-label="Go to example" role="button" tabindex="0" aria-roledescription="button">
+                <i class="ms-Icon ms-Icon--View" aria-hidden="true"></i> Try it
             </a>
         </div>
     </div>

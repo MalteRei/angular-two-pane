@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CloseIconComponent } from './close-icon.component';
+import { DualScreenIconComponent } from './dual-screen-icon.component';
 
-describe('CloseIconComponent', () => {
-  let component: CloseIconComponent;
-  let fixture: ComponentFixture<CloseIconComponent>;
+describe('DualScreenIconComponent', () => {
+  let component: DualScreenIconComponent;
+  let fixture: ComponentFixture<DualScreenIconComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CloseIconComponent ]
+      declarations: [ DualScreenIconComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CloseIconComponent);
+    fixture = TestBed.createComponent(DualScreenIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

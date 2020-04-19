@@ -192,9 +192,14 @@ pre {
 
 i {
     color: var(--color-text-primary);
-    font-size: 1em;
-    line-height: 1.375em;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 400;
+
     font-family: var(--font-family);
+    margin: 1px;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 html, body {
   height: 100%;
@@ -301,5 +306,10 @@ a{
   border-image: initial;
   text-decoration: none;
   border-radius: 4px;
+  
+}
+
+a i{
+    color: var(--color-text-secondary);
 }
 

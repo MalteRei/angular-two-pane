@@ -2,8 +2,12 @@
     twoPaneSpanningModeSingleSegment="single-fold-vertical">
     <app-pages [currentPageIndex]="currentPageIndexFirst()"></app-pages>
     <footer>
-        <button [disabled]="disablePreviousPageButton()" (click)="previousPage()"><i class="ms-Icon ms-Icon--PageLeft" aria-hidden="true"></i></button>
-        <button [disabled]="disableNextPageButton()" (click)="nextPage()"><i class="ms-Icon ms-Icon--PageRight" aria-hidden="true"></i></button>
+        <button aria-label="Previous page" role="button" tabindex="0" type="button" aria-roledescription="button"
+            [disabled]="disablePreviousPageButton()" (click)="previousPage()"><i class="ms-Icon ms-Icon--PageLeft"
+                aria-hidden="true"></i></button>
+        <button aria-label="Next page" role="button" tabindex="0" type="button" aria-roledescription="button"
+            [disabled]="disableNextPageButton()" (click)="nextPage()"><i class="ms-Icon ms-Icon--PageRight"
+                aria-hidden="true"></i></button>
     </footer>
 </ng-template>
 <ng-template #secondPage>

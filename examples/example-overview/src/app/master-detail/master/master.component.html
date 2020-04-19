@@ -1,7 +1,12 @@
 <div class="master-container">
     <button  type="button" tabindex="0" class="master-card" *ngFor="let pattern of listAppPatterns()"  (click)="selectPattern(pattern)" [class.master-card-selected]="selectedPattern === pattern">
         <div class="master-icon">
-            <app-master-detail-icon ></app-master-detail-icon>
+            <div [ngSwitch]="pattern.icon">
+                <app-master-detail-icon *ngSwitchCase="iconsEnum.MasterDetail"></app-master-detail-icon>
+                <app-two-page-icon *ngSwitchCase="iconsEnum.TwoPage"></app-two-page-icon>
+                <app-dual-screen-icon  *ngSwitchDefault></app-dual-screen-icon>
+              </div>  
+            
 
         </div>
         <h3 class="master-title">{{pattern.name}}</h3>

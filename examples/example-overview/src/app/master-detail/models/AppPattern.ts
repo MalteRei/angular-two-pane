@@ -1,4 +1,5 @@
 import { IAppPattern } from './IAppPattern';
+import { Icons } from './Icons';
 
 export class AppPattern implements IAppPattern{
     private Name: string;
@@ -30,11 +31,21 @@ export class AppPattern implements IAppPattern{
         this.LookAtLink = value;
     }
 
-    constructor(name: string, paragraphs: string[], pictureLink: URL, lookAtLink: string) {
+    private Icon: Icons;
+    public get icon(): Icons {
+        return this.Icon;
+    }
+    public set icon(value: Icons) {
+        this.Icon = value;
+    }
+
+    constructor(name: string, paragraphs: string[], pictureLink: URL, lookAtLink: string, icon: Icons) {
         this.name = name;
         this.paragraphs = paragraphs;
         this.pictureLink = pictureLink;
         this.lookAtLink = lookAtLink;
+        this.icon = icon;
     }
+    
 
 }
