@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener, Renderer2, Input, OnDestroy } from '@angular/core';
 import { BookService } from '../book.service';
 import { IPoint } from '../models/IPoint';
 import { Point } from '../models/Point';
@@ -30,9 +30,10 @@ import { trigger, transition, style, animate, keyframes, state, AnimationFactory
     ])
   ]
 })
-export class FirstPageComponent implements OnInit, AfterViewInit {
+export class FirstPageComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('firstPage', { read: ElementRef }) swipeElement: ElementRef;
+  @Input() currentPageIndex = 0;
 
   private rafPending = false;
   private initialTouchPos: IPoint = null;
@@ -42,16 +43,20 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   private slopValue = 5;
 
 
+  private listenersToUnsubscribe: Array<() => void> = [];
+  private mouseListeners: Array<() => void> = [];
+
   constructor(private bookService: BookService, private renderer: Renderer2, private builder: AnimationBuilder) { }
-
-  ngOnInit(): void {
-
+  ngOnDestroy(): void {
+    this.listenersToUnsubscribe.forEach(unsubscribe => unsubscribe());
   }
 
+
+
   public pageState(index: number) {
-    if (index === this.bookService.currentPageIndex) {
+    if (index === this.currentPageIndex) {
       return 'current';
-    } else if (index < this.bookService.currentPageIndex) {
+    } else if (index < this.currentPageIndex) {
       return 'previous';
     } else {
       return 'next';
@@ -61,41 +66,21 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   public pages() {
     return this.bookService.book.pages;
   }
-  public paragraphsToDisplay() {
-    return this.bookService.currentPage().paragraphs;
-  }
 
-  public titleToDisplay(): string | undefined {
-    return this.bookService.currentPage().title;
-  }
 
-  public pageNumber() {
-    return this.bookService.currentPageIndex;
+  public transformation() {
+    return 'translateX(-' + 100 * this.currentPageIndex + '%)';
   }
 
   public nextPage() {
 
     this.bookService.nextPage();
 
-    const myAnimation: AnimationFactory = this.builder.build([
-      animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
-    ]);
-
-    const player = myAnimation.create(this.swipeElement.nativeElement);
-    player.play();
-
   }
 
 
   public previousPage() {
     this.bookService.previousPage();
-    const myAnimation: AnimationFactory = this.builder.build([
-      animate('500ms 1s cubic-bezier(0.8, 0, 0.2, 1)', style({ transform: `translateX(-${100 * this.bookService.currentPageIndex}%)` }))
-    ]);
-
-    const player = myAnimation.create(this.swipeElement.nativeElement);
-    player.play();
-
 
   }
 
@@ -112,29 +97,29 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
     // Check if pointer events are supported.
     if (window.PointerEvent) {
       // Add Pointer Event Listener
-      //TODO: destroy event listeners: https://stackoverflow.com/a/47106904 + add render listen for the other event listeners.
-      this.renderer.listen(this.swipeElement.nativeElement, 'pointerdown', (event) => this.handleGestureStart(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'pointermove', (event) => this.handleGestureMove(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'pointerup', (event) => this.handleGestureEnd(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'pointercancel', (event) => this.handleGestureEnd(event));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'pointerdown', (event) => this.handleGestureStart(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'pointermove', (event) => this.handleGestureMove(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'pointerup', (event) => this.handleGestureEnd(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'pointercancel', (event) => this.handleGestureEnd(event)));
 
-      /* this.swipeElement.nativeElement.addEventListener('pointerdown', this.handleGestureStart.bind(this), true);
-       this.swipeElement.nativeElement.addEventListener('pointermove', this.handleGestureMove.bind(this), true);
-       this.swipeElement.nativeElement.addEventListener('pointerup', this.handleGestureEnd.bind(this), true);
-       this.swipeElement.nativeElement.addEventListener('pointercancel', this.handleGestureEnd.bind(this), true);*/
     } else {
       // Add Touch Listener
-      this.renderer.listen(this.swipeElement.nativeElement, 'touchstart', (event) => this.handleGestureStart(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'touchmove', (event) => this.handleGestureMove(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'touchend', (event) => this.handleGestureEnd(event));
-      this.renderer.listen(this.swipeElement.nativeElement, 'touchcancel', (event) => this.handleGestureEnd(event));
-      /*this.swipeElement.nativeElement.addEventListener('touchstart', this.handleGestureStart.bind(this), true);
-      this.swipeElement.nativeElement.addEventListener('touchmove', this.handleGestureMove.bind(this), true);
-      this.swipeElement.nativeElement.addEventListener('touchend', this.handleGestureEnd.bind(this), true);
-      this.swipeElement.nativeElement.addEventListener('touchcancel', this.handleGestureEnd.bind(this), true);*/
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'touchstart', (event) => this.handleGestureStart(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'touchmove', (event) => this.handleGestureMove(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'touchend', (event) => this.handleGestureEnd(event)));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'touchcancel', (event) => this.handleGestureEnd(event)));
 
       // Add Mouse Listener
-      this.renderer.listen(this.swipeElement.nativeElement, 'mousedown', (event) => this.handleGestureStart(event));
+      this.listenersToUnsubscribe.push(
+        this.renderer.listen(this.swipeElement.nativeElement, 'mousedown', (event) => this.handleGestureStart(event)));
 
     }
     /* // [END addlisteners] */
@@ -147,7 +132,6 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   // Handle the start of gestures
   public handleGestureStart(event: MouseEvent | TouchEvent | PointerEvent) {
     event.preventDefault();
-    console.log('handle gesture start');
 
     if (event instanceof TouchEvent && event.touches && event.touches.length > 1) {
       return;
@@ -158,9 +142,10 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
       (event.target as Element).setPointerCapture(event.pointerId);
     } else {
       // Add Mouse Listeners
-
-      document.addEventListener('mousemove', this.handleGestureMove.bind(this), true);
-      document.addEventListener('mouseup', this.handleGestureEnd.bind(this), true);
+      this.mouseListeners.push(
+        this.renderer.listen(document, 'mousemove', this.handleGestureStart));
+      this.mouseListeners.push(
+        this.renderer.listen(document, 'mouseup', this.handleGestureStart));
     }
 
     this.initialTouchPos = this.getGesturePointFromEvent(event);
@@ -169,7 +154,6 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
 
   // Handle end gestures
   public handleGestureEnd(event: MouseEvent | TouchEvent | PointerEvent) {
-    console.log('handle gesture end');
     event.preventDefault();
 
     if (event instanceof TouchEvent && event.touches && event.touches.length > 0) {
@@ -183,8 +167,7 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
       (event.target as Element).releasePointerCapture(event.pointerId);
     } else {
       // Remove Mouse Listeners
-      document.removeEventListener('mousemove', this.handleGestureMove.bind(this), true);
-      document.removeEventListener('mouseup', this.handleGestureEnd.bind(this), true);
+      this.mouseListeners.forEach(mouseListener => mouseListener());
     }
 
     this.updateSwipeRestPosition();
@@ -193,22 +176,25 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   }
 
   public updateSwipeRestPosition() {
-    const differenceInX = this.initialTouchPos.x - this.lastTouchPos.x;
+    if (this.initialTouchPos && this.lastTouchPos) {
+      const differenceInX = this.initialTouchPos.x - this.lastTouchPos.x;
 
 
 
-    // Check if we need to change state to left or right based on slop value
-    if (Math.abs(differenceInX) > this.slopValue) {
-      if (differenceInX > 0) {
-        if (this.bookService.hasNextPage()) {
-          this.nextPage();
-        }
-      } else {
-        if (this.bookService.hasPreviousPage()) {
-          this.previousPage();
+      // Check if we need to change state to left or right based on slop value
+      if (Math.abs(differenceInX) > this.slopValue) {
+        if (differenceInX > 0) {
+          if (this.bookService.hasNextPage()) {
+            this.nextPage();
+          }
+        } else {
+          if (this.bookService.hasPreviousPage()) {
+            this.previousPage();
+          }
         }
       }
     }
+
 
 
   }

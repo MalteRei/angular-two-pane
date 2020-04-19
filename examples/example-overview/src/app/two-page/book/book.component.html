@@ -1,8 +1,11 @@
 <ng-template [duoPane] [secondaryPane]="secondPage" twoPaneMinWidthSingleSegment=800
     twoPaneSpanningModeSingleSegment="single-fold-vertical">
-    <app-first-page></app-first-page>
+    <app-first-page [currentPageIndex]="currentPageIndexFirst()"></app-first-page>
+    <footer>
+        <button [disabled]="disablePreviousPageButton()" (click)="previousPage()">Previous</button>
+        <button [disabled]="disableNextPageButton()" (click)="nextPage()">Next</button>
+    </footer>
 </ng-template>
 <ng-template #secondPage>
-    <app-second-page></app-second-page>
-    
+    <app-first-page [currentPageIndex]="currentPageIndexSecond()"></app-first-page>
 </ng-template>

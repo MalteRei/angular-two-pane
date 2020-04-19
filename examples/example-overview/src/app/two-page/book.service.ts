@@ -78,6 +78,10 @@ export class BookService {
     return this.CurrentPageIndex > 0;
   }
 
+  public bookLength(){
+    return this.book.pages.length;
+  }
+
   constructor() { }
 
 }
