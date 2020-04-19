@@ -8,7 +8,8 @@ import { Paragraph } from './models/Paragraph';
 })
 export class BookService {
 
-  private Book = new Book("Introduction to dual-screen devices", [
+  private Book = new Book('Introduction to dual-screen devices', [
+    new Page('Introduction to dual-screen devices', []),
     new Page(undefined, [
       new Paragraph(undefined, 'Dual-screen devices are portable multi-posture devices with two symmetric screens that work together in unique ways to provide productivity in a flexible form factor.'),
       new Paragraph(undefined, 'With dual-screen devices such as Microsoft\'s Surface Neo and Surface Duo, people can get things done on-the-go faster than ever: take notes on one screen and review the full project proposal on the other while in transit; sit down at a table to write a thoughtful email using a software or hardware keyboard while waiting for lunch; and then watch a video, browse the web, or read a book as you get back to your life.'),

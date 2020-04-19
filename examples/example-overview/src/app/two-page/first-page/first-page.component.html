@@ -24,7 +24,7 @@
     <main #firstPage [style.transition]="transition" [style.msTransform]="transformStyle"
     [style.MozTransform]="transformStyle" [style.webkitTransform]="transformStyle"
     [style.transform]="transformStyle">
-        <div class="page-text" *ngFor="let page of pages(); let i = index" [@pageTrigger]="pageState(i)">
+        <div class="page-content" *ngFor="let page of pages(); let i = index" [@pageTrigger]="pageState(i)">
             <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
             <div *ngFor="let paragraph of page.paragraphs">
                 <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>

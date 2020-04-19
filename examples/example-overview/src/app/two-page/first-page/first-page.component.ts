@@ -27,53 +27,19 @@ import { trigger, transition, style, animate, keyframes, state, AnimationFactory
       transition('* => current', [
         animate('500ms 1.5s cubic-bezier(0.8, 0, 0.2, 1)')
       ])
-    ]),
-    trigger('changePageTrigger', [
-
-      transition(':increment', [
-        transition(':leave', animate('500ms', keyframes([
-          style({ transform: 'scale(1) translateX(0)', offset: 0 }),
-          style({ transform: 'scale(0.9) translateX(0)', offset: 0.25 }),
-          style({ transform: 'scale(0.9) translateX(-160%)', offset: 1.0 })
-        ]))),
-        transition(':enter',
-          animate('500ms', keyframes([
-            style({ transform: 'scale(0.9) translateX(160%)', offset: 0 }),
-            style({ transform: 'scale(0.9) translateX(0)', offset: 0.75 }),
-            style({ transform: 'scale(1) translateX(0)', offset: 1.0 })
-          ])))
-      ]),
-      transition(':decrement', [
-        transition(':enter', animate('500ms', keyframes([
-          style({ transform: 'scale(0.9) translateX(-160%)', offset: 0 }),
-          style({ transform: 'scale(0.9) translateX(0)', offset: 0.75 }),
-          style({ transform: 'scale(1) translateX(0)', offset: 1.0 })
-        ]))),
-        transition(':leave',
-          animate('500ms', keyframes([
-            style({ transform: 'scale(1) translateX(0)', offset: 0 }),
-            style({ transform: 'scale(0.9) translateX(0)', offset: 0.25 }),
-            style({ transform: 'scale(0.9) translateX(160%)', offset: 1.0 })
-          ])))
-      ])
-
-    ]),
+    ])
   ]
 })
 export class FirstPageComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('firstPage') swipeElement: ElementRef;
+  @ViewChild('firstPage', { read: ElementRef }) swipeElement: ElementRef;
 
   private rafPending = false;
   private initialTouchPos: IPoint = null;
   private lastTouchPos: IPoint = null;
-  private currentXPosition = 0;
-  private currentState = SwipeState.STATE_DEFAULT;
-  public transition = 'initial';
-  public transformStyle = '';
-  private itemWidth = 0;
-  private slopValue = 0;
-  private handleSize = 10;
+
+
+  private slopValue = 5;
 
 
   constructor(private bookService: BookService, private renderer: Renderer2, private builder: AnimationBuilder) { }
@@ -82,10 +48,10 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
 
   }
 
-  public pageState(index: number){
-    if(index === this.bookService.currentPageIndex) {
+  public pageState(index: number) {
+    if (index === this.bookService.currentPageIndex) {
       return 'current';
-    } else if(index < this.bookService.currentPageIndex) {
+    } else if (index < this.bookService.currentPageIndex) {
       return 'previous';
     } else {
       return 'next';
@@ -142,7 +108,6 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.updateSwipeItemWidth();
     /* // [START addlisteners] */
     // Check if pointer events are supported.
     if (window.PointerEvent) {
@@ -176,17 +141,7 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
   }
 
   /*Swipe gestures source: https://github.com/google/WebFundamentals/blob/master/src/content/en/fundamentals/design-and-ux/input/touch/_code/touch-demo-1.html#L179*/
-  @HostListener('window:resize', ['$event'])
-  public resize(event: Event) {
-    this.updateSwipeItemWidth();
-  }
 
-  private updateSwipeItemWidth() {
-    if (this.swipeElement) {
-      this.itemWidth = this.swipeElement.nativeElement.clientWidth;
-      this.slopValue = this.itemWidth * (1 / 4);
-    }
-  }
 
 
   // Handle the start of gestures
@@ -209,12 +164,12 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
     }
 
     this.initialTouchPos = this.getGesturePointFromEvent(event);
-    // swipeFrontElement.style.transition = 'initial';
-    this.transition = 'initial';
+
   }
 
   // Handle end gestures
   public handleGestureEnd(event: MouseEvent | TouchEvent | PointerEvent) {
+    console.log('handle gesture end');
     event.preventDefault();
 
     if (event instanceof TouchEvent && event.touches && event.touches.length > 0) {
@@ -239,75 +194,26 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
 
   public updateSwipeRestPosition() {
     const differenceInX = this.initialTouchPos.x - this.lastTouchPos.x;
-    this.currentXPosition = this.currentXPosition - differenceInX;
 
-    // Go to the default state and change
-    let newState = SwipeState.STATE_DEFAULT;
+
 
     // Check if we need to change state to left or right based on slop value
     if (Math.abs(differenceInX) > this.slopValue) {
-      if (this.currentState === SwipeState.STATE_DEFAULT) {
-        if (differenceInX > 0) {
-          newState = SwipeState.STATE_LEFT_SIDE;
-        } else {
-          newState = SwipeState.STATE_RIGHT_SIDE;
-        }
-      } else {
-        if (this.currentState === SwipeState.STATE_LEFT_SIDE && differenceInX > 0) {
-          newState = SwipeState.STATE_DEFAULT;
-        } else if (this.currentState === SwipeState.STATE_RIGHT_SIDE && differenceInX < 0) {
-          newState = SwipeState.STATE_DEFAULT;
-        }
-      }
-    } else {
-      newState = this.currentState;
-    }
-
-    this.changeState(newState);
-
-    // swipeFrontElement.style.transition = 'all 150ms ease-out';
-    this.transition = 'all 150ms ease-out';
-  }
-
-  private changeState(newState: SwipeState) {
-    switch (newState) {
-      case SwipeState.STATE_DEFAULT:
-        this.currentXPosition = 0;
-        break;
-      case SwipeState.STATE_LEFT_SIDE:
-        console.log('state: left side');
+      if (differenceInX > 0) {
         if (this.bookService.hasNextPage()) {
           this.nextPage();
-          //this.currentXPosition = -(this.itemWidth - this.handleSize);
         }
-        newState = SwipeState.STATE_DEFAULT;
-        this.changeState(newState);
-
-
-        // this.currentXPosition = -(this.itemWidth - this.handleSize);
-        break;
-      case SwipeState.STATE_RIGHT_SIDE:
-        console.log('state: right side');
+      } else {
         if (this.bookService.hasPreviousPage()) {
           this.previousPage();
-          //this.currentXPosition = this.itemWidth - this.handleSize;
         }
-
-        newState = SwipeState.STATE_DEFAULT;
-        this.changeState(newState);
-
-        break;
+      }
     }
 
-    this.transformStyle = 'translateX(' + this.currentXPosition + 'px)';
 
-    /*swipeFrontElement.style.msTransform = transformStyle;
-    swipeFrontElement.style.MozTransform = transformStyle;
-    swipeFrontElement.style.webkitTransform = transformStyle;
-    swipeFrontElement.style.transform = transformStyle;
-*/
-    this.currentState = newState;
   }
+
+
 
   public getGesturePointFromEvent(event: MouseEvent | TouchEvent | PointerEvent): IPoint {
     const point = new Point(0, 0);
@@ -341,39 +247,12 @@ export class FirstPageComponent implements OnInit, AfterViewInit {
 
     this.rafPending = true;
 
-    if (window.requestAnimationFrame) {
-      window.requestAnimationFrame(this.onAnimFrame.bind(this));
-    } else if (window.webkitRequestAnimationFrame) {
-      window.webkitRequestAnimationFrame(this.onAnimFrame.bind(this));
-    } else {
-      window.setTimeout(this.onAnimFrame.bind(this), 1000 / 60);
-    }
+
   }
 
-  public onAnimFrame() {
-    if (!this.rafPending) {
-      return;
-    }
 
-    const differenceInX = this.initialTouchPos.x - this.lastTouchPos.x;
-
-    const newXTransform = (this.currentXPosition - differenceInX) + 'px';
-    this.transformStyle = 'translateX(' + newXTransform + ')';
-    /*swipeFrontElement.style.webkitTransform = transformStyle;
-    swipeFrontElement.style.MozTransform = transformStyle;
-    swipeFrontElement.style.msTransform = transformStyle;
-    swipeFrontElement.style.transform = transformStyle;*/
-
-    this.rafPending = false;
-  }
 
 
 
 }
 
-
-enum SwipeState {
-  STATE_DEFAULT,
-  STATE_LEFT_SIDE,
-  STATE_RIGHT_SIDE,
-}
