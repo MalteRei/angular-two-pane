@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, HostListener, Renderer2, Afte
 import { BookService } from '../book.service';
 import { IPoint } from '../models/IPoint';
 import { Point } from '../models/Point';
-import { animate, AnimationFactory, AnimationBuilder, style, trigger, animation, keyframes, transition, useAnimation, state, sequence } from '@angular/animations';
+import { animate, AnimationFactory, AnimationBuilder, style, trigger, animation, keyframes, transition, useAnimation, state, sequence, query, group, animateChild } from '@angular/animations';
 import { FirstPageComponent } from '../first-page/first-page.component';
 
 
@@ -42,7 +42,12 @@ export const pageZoomInAnimation = animation([
 
       }), { params: { pageIndex: 1 } }),
       transition(':increment', [
-          useAnimation(pageSwipeAnimation)
+        group([
+          useAnimation(pageSwipeAnimation),
+          query('@pageTrigger', animateChild())
+        ])
+          
+          
       ])
     ]
 
@@ -62,10 +67,6 @@ export class BookComponent implements OnInit, AfterViewInit {
   private currentState = SwipeState.STATE_DEFAULT;
   private slopValue = 0;
 
-
-  onAnimationEvent(event: AnimationEvent) {
-    console.log('animation');
-  }
 
   constructor(private bookService: BookService, private renderer: Renderer2, private builder: AnimationBuilder) { }
 
