@@ -86,7 +86,7 @@ option{
 
     ::-webkit-scrollbar {
     width: 8px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: var(--color-secondary);
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
@@ -94,28 +94,28 @@ option{
 
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
 
-    ::-webkit-scrollbar:hover {
+::-webkit-scrollbar:hover {
     /*background-color: rgba(0, 0, 0, 0.09);*/
-    background-color: var(--color-border);
+    background-color: var(--color-secondary-transparent);
 }
 
 
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
 
-    ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: var(--color-text-secondary);
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
 
-    ::-webkit-scrollbar-thumb:active {
+::-webkit-scrollbar-thumb:active {
     /* Some darker color when you click it */
     background: var(--color-text-primary);
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
 
-    ::-webkit-scrollbar-corner {
+::-webkit-scrollbar-corner {
     display: none;
 }
 
@@ -264,7 +264,13 @@ button:disabled{
     border-image: initial;
     text-decoration: none;
     border-color: var(--color-secondary);
+
     
+}
+
+:disabled i{
+    color: var(--color-quaternary);
+    cursor: not-allowed;
 }
 
 a{

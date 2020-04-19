@@ -6,9 +6,9 @@ import { IPage } from '../models/IPage';
 import { trigger, transition, style, animate, keyframes, state, AnimationFactory, AnimationBuilder } from '@angular/animations';
 
 @Component({
-  selector: 'app-first-page',
-  templateUrl: './first-page.component.html',
-  styleUrls: ['./first-page.component.css'],
+  selector: 'app-pages',
+  templateUrl: './pages.component.html',
+  styleUrls: ['./pages.component.css'],
   animations: [
     // animation triggers go here
     trigger('pageTrigger', [
@@ -30,7 +30,7 @@ import { trigger, transition, style, animate, keyframes, state, AnimationFactory
     ])
   ]
 })
-export class FirstPageComponent implements AfterViewInit, OnDestroy {
+export class PagesComponent implements OnDestroy, AfterViewInit {
 
   @ViewChild('firstPage', { read: ElementRef }) swipeElement: ElementRef;
   @Input() currentPageIndex = 0;
@@ -47,6 +47,7 @@ export class FirstPageComponent implements AfterViewInit, OnDestroy {
   private mouseListeners: Array<() => void> = [];
 
   constructor(private bookService: BookService, private renderer: Renderer2, private builder: AnimationBuilder) { }
+
   ngOnDestroy(): void {
     this.listenersToUnsubscribe.forEach(unsubscribe => unsubscribe());
   }
@@ -235,10 +236,4 @@ export class FirstPageComponent implements AfterViewInit, OnDestroy {
 
 
   }
-
-
-
-
-
 }
-
