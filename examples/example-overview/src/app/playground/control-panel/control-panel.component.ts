@@ -14,14 +14,11 @@ import { SpanningMode } from 'duo-pane-library';
 })
 export class ControlPanelComponent implements OnInit {
 
-  spanningMode = SpanningMode.None;
-  public readonly spanningModeTypes = SpanningMode;
-  public spanningModeOptions = [];
+  public spanningModeOptions = ['single-fold-horizontal', 'single-fold-vertical', 'none'];
 
   constructor(private controlService: ControlService) { }
 
   ngOnInit(): void {
-    this.spanningModeOptions = Object.keys(this.spanningModeTypes);
   }
 
   public get primaryPanePercentageSingleSegment(): number {
@@ -61,7 +58,16 @@ export class ControlPanelComponent implements OnInit {
     return this.controlService.twoPaneSpanningModeSingleSegment;
   }
   public set twoPaneSpanningModeSingleSegment(value: SpanningMode) {
+    console.dir(value);
     this.controlService.twoPaneSpanningModeSingleSegment = value;
 
+  }
+
+  public logSuccess(e: any){
+    console.log('success');
+  }
+
+  public logError(e: any){
+    console.log('error');
   }
 }

@@ -84,7 +84,7 @@ option{
 
 /* Turn on custom 8px wide scrollbar */
 
-    ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 8px;
     background-color: var(--color-secondary);
     -webkit-border-radius: 100px;
@@ -101,9 +101,8 @@ option{
 
 
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
-
 ::-webkit-scrollbar-thumb {
-    background: var(--color-text-secondary);
+    background: var(--color-tertiary);
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
@@ -177,14 +176,14 @@ p {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    line-height: 2.4rem;
 }
 
 pre {
     color: var(--color-text-primary);
-    display: inline;
     font-family: var(--font-family);
     font-size: 1em;
-    line-height: 1.375em;
+    line-height: 2.4rem;
     white-space: pre-line;
     margin: 0;
 }

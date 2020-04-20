@@ -25,6 +25,7 @@ export class PlaygroundComponent implements OnInit {
 
   public get twoPaneMinHeightSingleSegment(): number {
     return this.controlService.twoPaneMinHeightSingleSegment;
+
   }
 
   public get ensureSecondaryPaneVisible(): boolean {
@@ -33,7 +34,7 @@ export class PlaygroundComponent implements OnInit {
 
 
   public get twoPaneSpanningModeSingleSegment(): SpanningMode {
+    console.dir(this.controlService.twoPaneSpanningModeSingleSegment);
     return this.controlService.twoPaneSpanningModeSingleSegment;
   }
- 
 }

@@ -7,7 +7,7 @@ import { SpanningMode } from 'duo-pane-library';
 })
 export class ControlService {
 
-  private currentDuoPaneProperties = new DuoPaneProperties(50, false, 0, 0, SpanningMode.SingleFoldVertical);
+  private currentDuoPaneProperties = new DuoPaneProperties(50, false, 0, 0, 'none');
 
   constructor() { }
 
@@ -44,6 +44,8 @@ export class ControlService {
     return this.currentDuoPaneProperties.twoPaneSpanningModeSingleSegment;
   }
   public set twoPaneSpanningModeSingleSegment(value: SpanningMode) {
+    console.dir(value);
     this.currentDuoPaneProperties.twoPaneSpanningModeSingleSegment = value;
+    console.dir(this.currentDuoPaneProperties.twoPaneSpanningModeSingleSegment);
   }
 }
