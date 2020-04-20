@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlService } from '../services/control.service';
+import { SpanningMode } from 'duo-pane-library';
+
 
 @Component({
   selector: 'app-playground',
@@ -17,4 +19,21 @@ export class PlaygroundComponent implements OnInit {
     return this.controlService.primaryPanePercentageSingleSegment;
   }
 
+  public get twoPaneMinWidthSingleSegment(): number {
+    return this.controlService.twoPaneMinWidthSingleSegment;
+  }
+
+  public get twoPaneMinHeightSingleSegment(): number {
+    return this.controlService.twoPaneMinHeightSingleSegment;
+  }
+
+  public get ensureSecondaryPaneVisible(): boolean {
+    return this.controlService.ensureSecondaryPaneVisible;
+  }
+
+
+  public get twoPaneSpanningModeSingleSegment(): SpanningMode {
+    return this.controlService.twoPaneSpanningModeSingleSegment;
+  }
+ 
 }

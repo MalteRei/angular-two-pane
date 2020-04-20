@@ -1,10 +1,59 @@
 <form #duoForm="ngForm">
-    <div>
-      <label for="primaryPanePercentageSingleSegment">Primary Pane Percentage Single Segment</label>
-      <input [(ngModel)]="primaryPanePercentageSingleSegment" 
-        type="number" min="0" max="100" name="primaryPanePercentageSingleSegment" id="primaryPanePercentageSingleSegment" required>
+  <div>
+    <label id="twoPaneMinWidthSingleSegmentLabel" for="twoPaneMinWidthSingleSegment">Two Pane Min Width Single Segment
+      (px)</label>
+    <p>On non foldable or dual screen devices (screens with one segment) both panes are displayed it the window width is
+      greater or equal to <b>this value (twoPaneMinWidthSingleSegment)</b> and the window height is greater or equal to
+      twoPaneMinHeightSingleSegment. Default value is 0px.</p>
+    <input [(ngModel)]="twoPaneMinWidthSingleSegment" aria-labelledby="twoPaneMinWidthSingleSegment"
+      [attr.aria-valuetext]="twoPaneMinWidthSingleSegment + 'px'" aria-valuemin="0" aria-disabled="false" type="number"
+      min="0" name="twoPaneMinWidthSingleSegment" role="spinbutton" autocomplete="off" id="twoPaneMinWidthSingleSegment"
+      required>
+  </div>
+  <div>
+    <label id="twoPaneMinHeightSingleSegmentLabel" for="twoPaneMinHeightSingleSegment">Two Pane Min Height Single
+      Segment
+      (px)</label>
+    <p>On non foldable or dual screen devices (screens with one segment) both panes are displayed it the window width is
+      greater or equal to twoPaneMinWidthSingleSegment and the window height is greater or equal to <b>this value
+        (twoPaneMinHeightSingleSegment)</b>. Default value is 0px.</p>
+    <input [(ngModel)]="twoPaneMinHeightSingleSegment" aria-labelledby="twoPaneMinHeightSingleSegment"
+      [attr.aria-valuetext]="twoPaneMinHeightSingleSegment + 'px'" aria-valuemin="0" aria-disabled="false" type="number"
+      min="0" name="twoPaneMinHeightSingleSegment" role="spinbutton" autocomplete="off"
+      id="twoPaneMinHeightSingleSegment" required>
+  </div>
+  <div>
+    <label id="primaryPanePercentageSingleSegmentLabel" for="primaryPanePercentageSingleSegment">Primary Pane Percentage
+      Single Segment (%)</label>
+    <p>When duo pane is set to display both pane's on devices with a single screen segment (i.e. large non foldable
+      single screen devices) this value defines how much percent the primary pane makes up. Default value is 50%.</p>
+    <input [(ngModel)]="primaryPanePercentageSingleSegment" aria-labelledby="primaryPanePercentageSingleSegment"
+      [attr.aria-valuetext]="primaryPanePercentageSingleSegment + '%'" aria-valuemin="0" aria-valuemax="100"
+      aria-disabled="false" type="number" min="0" max="100" name="primaryPanePercentageSingleSegment" role="spinbutton"
+      autocomplete="off" id="primaryPanePercentageSingleSegment" required>
+  </div>
+  <div>
+    <label id="ensureSecondaryPaneVisibleLabel" for="ensureSecondaryPaneVisible">Ensure Secondary Pane Visible</label>
+    <div class="toggle-container">
+      <button [ngClass]="ensureSecondaryPaneVisible ? 'toggle-pill' : 'toggle-pill-not-checked'"
+        (click)="toggleEnsureSecondaryPaneVisible()" id="ensureSecondaryPaneVisible" role="checkbox"
+        [attr.aria-checked]="ensureSecondaryPaneVisible" aria-labelledby="ensureSecondaryPaneVisibleLabel"
+        type="button">
+        <span [ngClass]="ensureSecondaryPaneVisible ? 'toggle-thumb' : 'toggle-thumb-not-checked'">
+        </span>
+      </button>
+      <label class="toggle-text" id="ensureSecondaryPaneVisibleStateText"
+        for="ensureSecondaryPaneVisible">{{ensureSecondaryPaneVisible}}
+      </label>
     </div>
+  </div>
+  <div>
+    {{spanningMode}}
 
-   
+    <select name="spanningMode" [(ngModel)]="spanningMode" style="display: inline-block">
+      <option *ngFor="let key of spanningModeOptions" [value]="key" [label]="spanningModeTypes[key]"></option>
+    </select>
+  </div>
 
-  </form>
+
+</form>

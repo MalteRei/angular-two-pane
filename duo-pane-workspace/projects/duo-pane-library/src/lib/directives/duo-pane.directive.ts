@@ -16,7 +16,7 @@ export class DuoPaneDirective {
   /* Variables set to control two pane if only one window segment is available-*/
   private TwoPaneMinWidthSingleSegment = 0;
   private TwoPaneMinHeightSingleSegment = 0;
-  private TwoPaneSpanningModeSingleSegment = 'none';
+  private TwoPaneSpanningModeSingleSegment = SpanningMode.None;
   private PrimaryPanePercentageSingleSegment = 50;
   public get primaryPanePercentageSingleSegment() {
     return this.PrimaryPanePercentageSingleSegment;
@@ -157,7 +157,7 @@ export class DuoPaneDirective {
         this.renderDualPanes(this.dualScreenInformationService.getTwoLargestSegments());
 
       } else if (windowSegements[0].height >= this.TwoPaneMinHeightSingleSegment
-        && windowSegements[0].width > this.TwoPaneMinWidthSingleSegment
+        && windowSegements[0].width >= this.TwoPaneMinWidthSingleSegment
         && this.TwoPaneSpanningModeSingleSegment !== 'none') {
         this.renderBothPanes(windowSegements[0]);
       } else {

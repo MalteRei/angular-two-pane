@@ -15,7 +15,7 @@
     :root {
     /*color-highlight is the main color. It can be used to emphasize certain elements.*/
     --color-highlight-primary: rgb(0, 120, 212);
-    --color-highlight-secondary: #B3C7FF;
+    --color-highlight-secondary: rgb(0, 90, 158);
     /*color-primary is used on elements in the foreground the language learner can interact with. For example the background color of a card.*/
     --color-primary: #ffffff;
     /*color-secondary is used for elements in the background. For example the color behind the cards.*/
@@ -31,14 +31,14 @@
     --color-text-primary: #000000;
     /*color-text-secondary is used on the text elements that are not as important as other text and thus should not be the focus.*/
     --color-text-secondary: white;
-    --font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
+    --font-family: '"Segoe UI","Segoe UI Web (West European)","Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Roboto", "Helvetica Neue", Arial, sans-serif';
 }
 
 @media (prefers-color-scheme: dark) {
     /*Define css variables in dark mode.*/
         :root {
         --color-highlight-primary: rgb(0, 120, 212);
-        --color-highlight-secondary: #B3C7FF;
+        --color-highlight-secondary: rgb(0, 90, 158);
         --color-primary: #1B1A19;
         --color-secondary: #252423;
         --color-tertiary: #3B3A39;
@@ -48,7 +48,7 @@
         --color-secondary-transparent: rgba(37, 36, 35, 0.8);
         --color-text-primary: #f3f2f1;
         --color-text-secondary: #C8C6C4;
-        --font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
+        --font-family: '"Segoe UI","Segoe UI Web (West European)","Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Roboto", "Helvetica Neue", Arial, sans-serif';
     }
 }
 
@@ -204,6 +204,8 @@ i {
 html, body {
   height: 100%;
   margin: 0px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 body {
     margin: 0;
@@ -254,6 +256,9 @@ button{
   text-decoration: none;
   border-radius: 4px;
   text-overflow: ellipsis;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+
 }
 
 
@@ -313,3 +318,174 @@ a i{
     color: var(--color-text-secondary);
 }
 
+
+label{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    border: 0;
+    font: inherit;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+    box-shadow: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    display: block;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    overflow-wrap: break-word;
+    pointer-events: none;
+    line-height: 20px;
+}
+
+
+
+
+
+/*toggle*/
+.toggle-container {
+	display: inline-flex;
+	position: relative;
+}
+
+.toggle-thumb {
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	transition: all 0.1s ease;
+	background-color: var(--color-text-secondary);
+	border-color: transparent;
+	border-width: .28em;
+	border-style: solid;
+}
+
+.toggle-thumb-not-checked {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-quaternary);
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: all 0.1s ease 0s;
+    border-color: transparent;
+    border-width: 0.28em;
+    border-style: solid;
+}
+
+.toggle-thumb-not-checked:hover {
+    background-color: var(--color-text-primary);
+}
+
+.toggle-pill-not-checked:hover .toggle-thumb-not-checked{
+    border-color: var(--color-text-primary);
+}
+
+.toggle-pill {
+	-webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    position: relative;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    justify-content: flex-end;
+    outline: transparent;
+    border-radius: 10px;
+    transition: all 0.1s ease 0s;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    background: var(--color-highlight-primary);
+    border-color: transparent;
+    font-family: inherit;
+    min-width: auto;
+}
+
+.toggle-pill:hover {
+    background-color: var(--color-highlight-secondary);
+    border-color: transparent;
+}
+
+.toggle-pill-not-checked:hover {
+        border-color: var(--color-text-primary);
+}
+
+
+
+.toggle-pill-not-checked {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    position: relative;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    outline: transparent;
+    border-radius: 10px;
+    transition: all 0.1s ease 0s;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-quaternary);
+    border-image: initial;
+    background: transparent;
+    min-width: auto;
+}
+
+
+
+
+.toggle-text {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: block;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	margin-top: 0px;
+	margin-right: 8px;
+	margin-bottom: 0px;
+	margin-left: 8px;
+	user-select: none;
+	font-weight: 400;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+/*toggle end*/
