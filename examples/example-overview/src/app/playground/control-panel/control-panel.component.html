@@ -1,1 +1,10 @@
-<p>control-panel works!</p>
+<form #duoForm="ngForm">
+    <div>
+      <label for="primaryPanePercentageSingleSegment">Primary Pane Percentage Single Segment</label>
+      <input [(ngModel)]="primaryPanePercentageSingleSegment" 
+        type="number" min="0" max="100" name="primaryPanePercentageSingleSegment" id="primaryPanePercentageSingleSegment" required>
+    </div>
+
+   
+
+  </form>

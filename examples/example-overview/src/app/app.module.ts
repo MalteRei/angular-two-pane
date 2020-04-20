@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MasterDetailModule } from './master-detail/master-detail.module';
 import { TwoPageModule } from './two-page/two-page.module';
+import { PlaygroundModule } from './playground/playground.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { TwoPageModule } from './two-page/two-page.module';
   ],
   imports: [
     BrowserModule,
+    PlaygroundModule,
     TwoPageModule,
     MasterDetailModule,
     AppRoutingModule,

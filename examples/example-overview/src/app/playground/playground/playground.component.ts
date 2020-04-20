@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ControlService } from '../services/control.service';
 
 @Component({
   selector: 'app-playground',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaygroundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private controlService: ControlService) { }
 
   ngOnInit(): void {
+  }
+
+  public get primaryPanePercentageSingleSegment(): number {
+    return this.controlService.primaryPanePercentageSingleSegment;
   }
 
 }

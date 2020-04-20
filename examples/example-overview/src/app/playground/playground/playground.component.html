@@ -1,1 +1,6 @@
-<p>playground works!</p>
+<ng-template [duoPane] [secondaryPane]="secondaryBlock" [ensureSecondaryPaneVisible]="true" [primaryPanePercentageSingleSegment]="primaryPanePercentageSingleSegment"  twoPaneMinWidthSingleSegment=1000 twoPaneSpanningModeSingleSegment="single-fold-vertical">
+    <app-control-panel></app-control-panel>
+</ng-template>
+<ng-template #secondaryBlock>
+    🐱‍👤
+</ng-template>
