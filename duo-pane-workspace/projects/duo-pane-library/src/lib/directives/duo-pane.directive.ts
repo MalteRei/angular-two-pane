@@ -105,7 +105,7 @@ export class DuoPaneDirective {
         this.updateView();
 
       }
-    } else if (typeof minWidth === 'number') {
+    } else if (typeof minWidth === 'number' && minWidth >= 0) {
       this.TwoPaneMinWidthSingleSegment = minWidth;
       this.updateView();
     }
@@ -120,7 +120,7 @@ export class DuoPaneDirective {
         this.updateView();
 
       }
-    } else if (typeof minHeight === 'number') {
+    } else if (typeof minHeight === 'number' && minHeight >= 0) {
       this.TwoPaneMinHeightSingleSegment = minHeight;
       this.updateView();
     }
