@@ -5,8 +5,11 @@
     [twoPaneMinWidthSingleSegment]="twoPaneMinWidthSingleSegment"
     [twoPaneMinHeightSingleSegment]="twoPaneMinHeightSingleSegment"
     [twoPaneSpanningModeSingleSegment]="twoPaneSpanningModeSingleSegment">
-    <app-control-panel></app-control-panel>
+    <div class="container">
+        <app-control-panel></app-control-panel>
+        <app-live-code></app-live-code>    
+    </div>
 </ng-template>
 <ng-template #secondaryBlock>
-    🐱‍👤
+    <app-secondary-playground-ninja-cat></app-secondary-playground-ninja-cat>
 </ng-template>

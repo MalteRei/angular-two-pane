@@ -1,0 +1,12 @@
+<button appClipboard [clipboardValue]="valueToCopy" (copyEvent)="successCopied($event)" class="copy-button" aria-label="Copy to clipboard"
+    type="button">
+    <div [@copyState]="isCopied ? 'hidden' : 'visible'">
+        <i class="ms-Icon ms-Icon--Copy" aria-hidden="true"></i>
+        <span>Copy</span>
+    </div>
+
+    <div [@copyState]="isCopied ? 'visible' : 'hidden'" class="successful-copied" aria-hidden="true">
+        <i class="ms-Icon ms-Icon--CheckMark" aria-hidden="true"></i>
+
+    </div>
+</button>

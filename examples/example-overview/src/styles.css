@@ -19,19 +19,24 @@
     /*color-primary is used on elements in the foreground the language learner can interact with. For example the background color of a card.*/
     --color-primary: #ffffff;
     /*color-secondary is used for elements in the background. For example the color behind the cards.*/
-    --color-secondary: #F3F2F1;
+    --color-secondary: #fafafa;
     /*color-tertiary and color-quaternary can be used as a muted accent on top of color-primary and color-secondary.*/
-    --color-tertiary: #D2D0CE;
+    --color-tertiary: #f2f2f2;
     --color-quaternary: #A19F9D;
     /*color-acrylic is for background blur and transparency.*/
     --color-acrylic: rgba(255,255,255,0.3);
     --color-primary-transparent: rgba(255, 255, 255, 0.9);
     --color-secondary-transparent: rgba(243, 242, 241, 0.8);
     /*color-text-primary is the color used for most of the textual information to display to the user.*/
-    --color-text-primary: #000000;
+    --color-text-primary: #171717;
     /*color-text-secondary is used on the text elements that are not as important as other text and thus should not be the focus.*/
     --color-text-secondary: white;
-    --font-family: '"Segoe UI","Segoe UI Web (West European)","Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Roboto", "Helvetica Neue", Arial, sans-serif';
+    --font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+    /*color for code styling*/
+    --color-code-tag: #008;
+    --color-code-attribute: #606;
+    --color-code-string: #800;
+    --color-code-comment: #060;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,16 +44,20 @@
         :root {
         --color-highlight-primary: rgb(0, 120, 212);
         --color-highlight-secondary: rgb(0, 90, 158);
-        --color-primary: #1B1A19;
-        --color-secondary: #252423;
-        --color-tertiary: #3B3A39;
-        --color-quaternary: #797775;
+        --color-primary: #171717;
+        --color-secondary: #2e2e2e;
+        --color-tertiary: #242424;
+        --color-quaternary: #454545;
         --color-acrylic: rgba(26,26,26,.3);
         --color-primary-transparent: rgba(27, 26, 25, 0.7);
         --color-secondary-transparent: rgba(37, 36, 35, 0.8);
-        --color-text-primary: #f3f2f1;
-        --color-text-secondary: #C8C6C4;
-        --font-family: '"Segoe UI","Segoe UI Web (West European)","Segoe UI", -apple-system, BlinkMacSystemFont, "Segoe UI Webfont", "Roboto", "Helvetica Neue", Arial, sans-serif';
+        --color-text-primary: #e3e3e3;
+        --color-text-secondary: #2e2e2e;
+        --font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+        --color-code-tag: #569cd6;;
+        --color-code-attribute: #CA5010;
+        --color-code-string: #ce9178;
+        --color-code-comment: #57A64A;
     }
 }
 
@@ -67,14 +76,30 @@ i{
 
     font-size: 2em;
     line-height: 2.5em;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 400;
 
+    font-family: var(--font-family);
+    margin: 1px;
+    margin-left: 4px;
+    margin-right: 4px;
 
 }
+
 select{
-    min-width: 100px;
-    height: 1.375em;
-    font-size: 1em;
-    line-height: 1.375em;
+    background-color: transparent;
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
+
+}
+
+option{
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+
+
 }
 
 option{
@@ -102,7 +127,7 @@ option{
 
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
 ::-webkit-scrollbar-thumb {
-    background: var(--color-tertiary);
+    background: var(--color-quaternary);
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
@@ -175,7 +200,8 @@ p {
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: SFMono-Regular,Consolas,'Liberation Mono',source-code-pro,Menlo,Monaco,Courier,'Courier New',monospace;
+
     line-height: 2.4rem;
 }
 
@@ -189,17 +215,7 @@ pre {
 }
 
 
-i {
-    color: var(--color-text-primary);
-    font-size: 14px;
-    line-height: 30px;
-    font-weight: 400;
 
-    font-family: var(--font-family);
-    margin: 1px;
-    margin-left: 4px;
-    margin-right: 4px;
-}
 html, body {
   height: 100%;
   margin: 0px;
@@ -218,10 +234,12 @@ body {
 /* everywhere else */
 * {
   color: var(--color-text-primary);
-  font-family: var(--font-family);
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+  font-family: var(--font-family);
+
 }
 
  
@@ -315,6 +333,9 @@ a{
 
 a i{
     color: var(--color-text-secondary);
+}
+input{
+    background-color: transparent;
 }
 
 
