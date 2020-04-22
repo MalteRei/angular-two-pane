@@ -40,13 +40,6 @@ jobs:
           npx ng build duo-pane-library --prod
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
 
-      - name: Upload artifact 🌐
-        uses: actions/upload-artifact@v1
-        with:
-          name: duo-pane-npm-package
-          path: ./duo-pane-workspace/dist/duo-pane-library
-
-
   publish-npm:
     name: Publish to NPM 🚀
     needs: build
