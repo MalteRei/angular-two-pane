@@ -1,0 +1,66 @@
+
+
+name: Build example overview Angular application and deploy to GitHub pages
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'examples/example-overview/**'
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+        
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+      
+    - name: Install Dependencies 📦
+      run: |
+        npm install -g @angular/cli
+        npm install
+      working-directory: ./examples/example-overview
+
+      
+    - name: Code analysis 👀
+      run: |
+        npx ng lint
+      working-directory: ./examples/example-overview
+
+        
+    - name: Build 🔨
+      run: |
+        npx ng build --prod --base-href "https://gobonsai.de/"
+        cd dist/spendensport
+        cp index.html 404.html
+      working-directory: ./examples/example-overview
+
+        
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: frontend/spendensport/dist/spendensport/
+        TARGET_FOLDER: .
+        CLEAN_EXCLUDE: '[".github", "Concept_and_Architecture", "SocialMediaCampaign", "frontend", ".gitignore", "CNAME", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md", "LICENSE","README.md", "azure-pipelines.yml"]'
+        CLEAN: true

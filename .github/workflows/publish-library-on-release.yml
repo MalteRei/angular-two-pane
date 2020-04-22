@@ -1,0 +1,66 @@
+name: Publish duo pane library release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build duo pane library
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies 📦
+        run: |
+          npm install -g @angular/cli
+          npm install
+        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+
+      - name: Read duo pane version from package.json 
+        run: |
+          node -p "require('./package.json').version" > DUO_PANE_VERSION
+          echo "Building duo pane v$(cat DUO_PANE_VERSION)"
+        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+
+      - name: Build 🔨
+        run: |
+          npx ng build duo-pane-library --prod
+        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+
+      - name: Upload artifact 🌐
+        uses: actions/upload-artifact@v1
+        with:
+          name: duo-pane-npm-package
+          path: ./duo-pane-workspace/dist/duo-pane-library
+
+
+  publish-npm:
+    name: Publish to NPM 🚀
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
+      - working-directory: ./duo-pane-workspace/dist/duo-pane-library
