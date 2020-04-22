@@ -33,7 +33,7 @@ jobs:
         
       - name: Code analysis 👀
         run: |
-          npx ng lint
+          npx ng lint duo-pane-library
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
         
   update_release_draft:
