@@ -1,0 +1,27 @@
+footer{
+    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    margin: 0;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+
+button{
+    background-color: transparent;
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+    border-style: none;
+}
+
+i{
+    font-size: 32px;
+}

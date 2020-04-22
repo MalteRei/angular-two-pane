@@ -1,0 +1,25 @@
+<div class="container">
+    <form class="control-form" #duoSecondForm="ngForm">
+
+        <div class="control-container">
+            <label id="ensureSecondaryPaneVisibleLabel" for="ensureSecondaryPaneVisible">Ensure Secondary Pane Visible</label>
+            <div class="toggle-container">
+              <button [ngClass]="ensureSecondaryPaneVisible ? 'toggle-pill' : 'toggle-pill-not-checked'"
+                (click)="toggleEnsureSecondaryPaneVisible()" id="ensureSecondaryPaneVisible" role="checkbox"
+                [attr.aria-checked]="ensureSecondaryPaneVisible" aria-labelledby="ensureSecondaryPaneVisibleLabel"
+                type="button">
+                <span [ngClass]="ensureSecondaryPaneVisible ? 'toggle-thumb' : 'toggle-thumb-not-checked'">
+                </span>
+              </button>
+              <label class="toggle-text" id="ensureSecondaryPaneVisibleStateText"
+                for="ensureSecondaryPaneVisible">{{ensureSecondaryPaneVisible}}
+              </label>
+            </div>
+          </div>
+    </form>
+    <div class="ninja-cat-container">
+        <h1>
+            🐱‍👤
+        </h1>
+    </div>
+</div>

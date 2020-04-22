@@ -1,0 +1,511 @@
+/* 
+*You can add global styles to this file, and also import other style files. 
+*This ensures that common html tags look the same scross the entire application. 
+*For example all buttons should look the same which is why would style them here.
+*Styles that are not reused in different components can be styled on the component itself.
+*/
+
+
+/*
+    *Define css variables that must be used across the application for attributes that should only be changed in one place (here).
+    *A css variable can be used in any css style sheet in the following way: var(--color-primary)
+    *will be replaced by the browser with #ffffff in light and #1B1A19 in dark mode.
+    */
+
+    :root {
+    /*color-highlight is the main color. It can be used to emphasize certain elements.*/
+    --color-highlight-primary: rgb(0, 120, 212);
+    --color-highlight-secondary: rgb(0, 90, 158);
+    /*color-primary is used on elements in the foreground the language learner can interact with. For example the background color of a card.*/
+    --color-primary: #ffffff;
+    /*color-secondary is used for elements in the background. For example the color behind the cards.*/
+    --color-secondary: #fafafa;
+    /*color-tertiary and color-quaternary can be used as a muted accent on top of color-primary and color-secondary.*/
+    --color-tertiary: #f2f2f2;
+    --color-quaternary: #A19F9D;
+    /*color-acrylic is for background blur and transparency.*/
+    --color-acrylic: rgba(255,255,255,0.3);
+    --color-primary-transparent: rgba(255, 255, 255, 0.9);
+    --color-secondary-transparent: rgba(243, 242, 241, 0.8);
+    /*color-text-primary is the color used for most of the textual information to display to the user.*/
+    --color-text-primary: #171717;
+    /*color-text-secondary is used on the text elements that are not as important as other text and thus should not be the focus.*/
+    --color-text-secondary: white;
+    --font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+    /*color for code styling*/
+    --color-code-tag: #008;
+    --color-code-attribute: #606;
+    --color-code-string: #800;
+    --color-code-comment: #060;
+}
+
+@media (prefers-color-scheme: dark) {
+    /*Define css variables in dark mode.*/
+        :root {
+        --color-highlight-primary: rgb(0, 120, 212);
+        --color-highlight-secondary: rgb(0, 90, 158);
+        --color-primary: #171717;
+        --color-secondary: #2e2e2e;
+        --color-tertiary: #242424;
+        --color-quaternary: #454545;
+        --color-acrylic: rgba(26,26,26,.3);
+        --color-primary-transparent: rgba(27, 26, 25, 0.7);
+        --color-secondary-transparent: rgba(37, 36, 35, 0.8);
+        --color-text-primary: #e3e3e3;
+        --color-text-secondary: #2e2e2e;
+        --font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+        --color-code-tag: #569cd6;;
+        --color-code-attribute: #CA5010;
+        --color-code-string: #ce9178;
+        --color-code-comment: #57A64A;
+    }
+}
+
+
+
+hr{
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: var(--color-border);
+    width: 100%;
+}
+
+i{
+    color: var(--color-text-secondary);
+
+
+    font-size: 2em;
+    line-height: 2.5em;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 400;
+
+    font-family: var(--font-family);
+    margin: 1px;
+    margin-left: 4px;
+    margin-right: 4px;
+
+}
+
+select{
+    background-color: transparent;
+    font-family: var(--font-family);
+    color: var(--color-text-primary);
+
+}
+
+option{
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+
+
+}
+
+option{
+    font-size: 1em;
+    line-height: 1.375em;
+}
+
+/* Turn on custom 8px wide scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--color-secondary);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+
+
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+
+::-webkit-scrollbar:hover {
+    /*background-color: rgba(0, 0, 0, 0.09);*/
+    background-color: var(--color-secondary-transparent);
+}
+
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb {
+    background: var(--color-quaternary);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:active {
+    /* Some darker color when you click it */
+    background: var(--color-text-primary);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-corner {
+    display: none;
+}
+
+h1 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 2.625em;
+    line-height: 3.25em;
+    margin: 0;
+}
+
+h2 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 2em;
+    line-height: 2.5em;
+    margin: 0;
+}
+
+h3 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 1.75em;
+    line-height: 2.25em;
+    margin: 0;
+}
+
+h4 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 1.5em;
+    line-height: 2em;
+    margin: 0;
+}
+
+h5 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 1.25em;
+    line-height: 1.75em;
+    margin: 0;
+}
+
+h6 {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 1.125em;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+p {
+    color: var(--color-text-primary);
+    font-size: 1em;
+    line-height: 1.375em;
+    font-family: var(--font-family);
+    margin: 0;
+}
+
+code {
+    font-family: SFMono-Regular,Consolas,'Liberation Mono',source-code-pro,Menlo,Monaco,Courier,'Courier New',monospace;
+
+    line-height: 2.4rem;
+}
+
+pre {
+    color: var(--color-text-primary);
+    font-family: var(--font-family);
+    font-size: 1em;
+    line-height: 2.4rem;
+    white-space: pre-line;
+    margin: 0;
+}
+
+
+
+html, body {
+  height: 100%;
+  margin: 0px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+    background-color: var(--color-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+}
+
+/* everywhere else */
+* {
+  color: var(--color-text-primary);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Segoe UI','Segoe UI Web (West European)','Segoe UI',SegoeUI,'Segoe WP',-apple-system,BlinkMacSystemFont,'Segoe UI Webfont',Roboto,'Helvetica Neue',Helvetica,Tahoma,Arial,sans-serif;
+  font-family: var(--font-family);
+
+}
+
+ 
+
+button{
+  position: relative;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  line-height: 30px;
+  font-weight: 400;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: top;
+  padding-top: 0px;
+  padding-right: 16px;
+  padding-bottom: 0px;
+  padding-left: 16px;
+  min-width: 80px;
+  height: 32px;
+  background-color: var(--color-highlight-primary);
+  color: var(--color-text-secondary);
+  user-select: none;
+  outline: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  text-decoration: none;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+
+}
+
+
+button:disabled{
+    background-color: var(--color-secondary);
+    color: var(--color-quaternary);
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+    outline: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    text-decoration: none;
+    border-color: var(--color-secondary);
+
+    
+}
+
+:disabled i{
+    color: var(--color-quaternary);
+    cursor: not-allowed;
+}
+
+a{
+  font-size: 14px;
+  line-height: 30px;
+  position: relative;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: top;
+  padding-top: 0px;
+  padding-right: 16px;
+  padding-bottom: 0px;
+  padding-left: 16px;
+  min-width: 80px;
+  height: 32px;
+  background-color: var(--color-highlight-primary);
+  color: var(--color-text-secondary);
+  user-select: none;
+  outline: transparent;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  text-decoration: none;
+  border-radius: 4px;
+  
+}
+
+a i{
+    color: var(--color-text-secondary);
+}
+input{
+    background-color: transparent;
+}
+
+
+label{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    border: 0;
+    font: inherit;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+    box-shadow: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    display: block;
+    padding-top: 5px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    overflow-wrap: break-word;
+    pointer-events: none;
+    line-height: 20px;
+}
+
+
+
+
+
+/*toggle*/
+.toggle-container {
+	display: inline-flex;
+	position: relative;
+}
+
+.toggle-thumb {
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	transition: all 0.1s ease;
+	background-color: var(--color-text-secondary);
+	border-color: transparent;
+	border-width: .28em;
+	border-style: solid;
+}
+
+.toggle-thumb-not-checked {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-quaternary);
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: all 0.1s ease 0s;
+    border-color: transparent;
+    border-width: 0.28em;
+    border-style: solid;
+}
+
+.toggle-thumb-not-checked:hover {
+    background-color: var(--color-text-primary);
+}
+
+.toggle-pill-not-checked:hover .toggle-thumb-not-checked{
+    border-color: var(--color-text-primary);
+}
+
+.toggle-pill {
+	-webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    position: relative;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    justify-content: flex-end;
+    outline: transparent;
+    border-radius: 10px;
+    transition: all 0.1s ease 0s;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    background: var(--color-highlight-primary);
+    border-color: transparent;
+    font-family: inherit;
+    min-width: auto;
+}
+
+.toggle-pill:hover {
+    background-color: var(--color-highlight-secondary);
+    border-color: transparent;
+}
+
+.toggle-pill-not-checked:hover {
+        border-color: var(--color-text-primary);
+}
+
+
+
+.toggle-pill-not-checked {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-direction: normal;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    position: relative;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-top: 0px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    outline: transparent;
+    border-radius: 10px;
+    transition: all 0.1s ease 0s;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-quaternary);
+    border-image: initial;
+    background: transparent;
+    min-width: auto;
+}
+
+
+
+
+.toggle-text {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: block;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	margin-top: 0px;
+	margin-right: 8px;
+	margin-bottom: 0px;
+	margin-left: 8px;
+	user-select: none;
+	font-weight: 400;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+/*toggle end*/

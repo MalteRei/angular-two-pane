@@ -1,0 +1,67 @@
+<form class="control-form" #duoForm="ngForm">
+  <div class="control-container">
+    <label id="twoPaneMinWidthSingleSegmentLabel" for="twoPaneMinWidthSingleSegment">Two Pane Min Width Single Segment
+      (px)</label>
+    <p>On non foldable or dual screen devices (screens with one segment) both panes are displayed it the window width is
+      greater or equal to <b>this value (twoPaneMinWidthSingleSegment)</b> and the window height is greater or equal to
+      twoPaneMinHeightSingleSegment. Default value is 0px.</p>
+    <input [(ngModel)]="twoPaneMinWidthSingleSegment" aria-labelledby="twoPaneMinWidthSingleSegmentLabel"
+      [attr.aria-valuetext]="twoPaneMinWidthSingleSegment + 'px'" aria-valuemin="0" aria-disabled="false" type="number"
+      min="0" name="twoPaneMinWidthSingleSegment" role="spinbutton" autocomplete="off" id="twoPaneMinWidthSingleSegment"
+      required>
+  </div>
+  <div class="control-container">
+    <label id="twoPaneMinHeightSingleSegmentLabel" for="twoPaneMinHeightSingleSegment">Two Pane Min Height Single
+      Segment
+      (px)</label>
+    <p>On non foldable or dual screen devices (screens with one segment) both panes are displayed it the window width is
+      greater or equal to twoPaneMinWidthSingleSegment and the window height is greater or equal to <b>this value
+        (twoPaneMinHeightSingleSegment)</b>. Default value is 0px.</p>
+    <input [(ngModel)]="twoPaneMinHeightSingleSegment" aria-labelledby="twoPaneMinHeightSingleSegmentLabel"
+      [attr.aria-valuetext]="twoPaneMinHeightSingleSegment + 'px'" aria-valuemin="0" aria-disabled="false" type="number"
+      min="0" name="twoPaneMinHeightSingleSegment" role="spinbutton" autocomplete="off"
+      id="twoPaneMinHeightSingleSegment" required>
+  </div>
+  <div class="control-container">
+    <label id="twoPaneSpanningModeSingleSegmentLabel" for="twoPaneSpanningModeSingleSegment">Two Pane Spanning Mode
+      Single Segment</label>
+    <p>Defines how the two panes are supposed to be split if not provided by the device and both panes are visible based
+      on the above parameters.</p>
+    <p></p>
+    <select [attr.aria-valuetext]="twoPaneSpanningModeSingleSegment"
+      aria-labelledby="twoPaneSpanningModeSingleSegmentLabel" id="twoPaneSpanningModeSingleSegment"
+      name="twoPaneSpanningModeSingleSegment" [(ngModel)]="twoPaneSpanningModeSingleSegment">
+      <option *ngFor="let key of spanningModeOptions" [value]="key" [label]="key"></option>
+    </select>
+  </div>
+  <div class="control-container">
+    <label id="primaryPanePercentageSingleSegmentLabel" for="primaryPanePercentageSingleSegment">Primary Pane Percentage
+      Single Segment (%)</label>
+    <p>When duo pane is set to display both pane's on devices with a single screen segment (i.e. large non foldable
+      single screen devices) this value defines how much percent the primary pane makes up. Default value is 50%.</p>
+    <input [(ngModel)]="primaryPanePercentageSingleSegment" aria-labelledby="primaryPanePercentageSingleSegmentLabel"
+      [attr.aria-valuetext]="primaryPanePercentageSingleSegment + '%'" aria-valuemin="0" aria-valuemax="100"
+      aria-disabled="false" type="number" min="0" max="100" name="primaryPanePercentageSingleSegment" role="spinbutton"
+      autocomplete="off" id="primaryPanePercentageSingleSegment" required>
+  </div>
+  <div class="control-container">
+    <label id="ensureSecondaryPaneVisibleLabel" for="ensureSecondaryPaneVisible">Ensure Secondary Pane Visible</label>
+    <p>If true the sceondary pane will be prioritized and always visible no matter the device. In case this is false the
+      secondary pane may not always be visible</p>
+    <div class="toggle-container">
+      <button [ngClass]="ensureSecondaryPaneVisible ? 'toggle-pill' : 'toggle-pill-not-checked'"
+        (click)="toggleEnsureSecondaryPaneVisible()" id="ensureSecondaryPaneVisible" role="checkbox"
+        [attr.aria-checked]="ensureSecondaryPaneVisible" aria-labelledby="ensureSecondaryPaneVisibleLabel"
+        type="button">
+        <span [ngClass]="ensureSecondaryPaneVisible ? 'toggle-thumb' : 'toggle-thumb-not-checked'">
+        </span>
+      </button>
+      <label class="toggle-text" id="ensureSecondaryPaneVisibleStateText"
+        for="ensureSecondaryPaneVisible">{{ensureSecondaryPaneVisible}}
+      </label>
+    </div>
+  </div>
+
+
+</form>
+

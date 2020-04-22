@@ -1,6 +1,9 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, Input, Output, TemplateRef, ViewContainerRef, Inject } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, Input, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DuoPaneComponent } from '../components/duo-pane/duo-pane.component';
-import { DuoPaneInformationService, ISegment, Segment, SpanningMode } from '../services/duo-pane-information.service';
+import { DuoPaneInformationService } from '../services/duo-pane-information.service';
+import { SpanningMode } from '../models/SpanningMode';
+import { ISegment } from '../models/ISegment';
+import { Segment } from '../models/Segment';
 
 @Directive({
   selector: '[duoPane]'
@@ -102,7 +105,7 @@ export class DuoPaneDirective {
         this.updateView();
 
       }
-    } else if (typeof minWidth === 'number') {
+    } else if (typeof minWidth === 'number' && minWidth >= 0) {
       this.TwoPaneMinWidthSingleSegment = minWidth;
       this.updateView();
     }
@@ -117,7 +120,7 @@ export class DuoPaneDirective {
         this.updateView();
 
       }
-    } else if (typeof minHeight === 'number') {
+    } else if (typeof minHeight === 'number' && minHeight >= 0) {
       this.TwoPaneMinHeightSingleSegment = minHeight;
       this.updateView();
     }
@@ -154,7 +157,7 @@ export class DuoPaneDirective {
         this.renderDualPanes(this.dualScreenInformationService.getTwoLargestSegments());
 
       } else if (windowSegements[0].height >= this.TwoPaneMinHeightSingleSegment
-        && windowSegements[0].width > this.TwoPaneMinWidthSingleSegment
+        && windowSegements[0].width >= this.TwoPaneMinWidthSingleSegment
         && this.TwoPaneSpanningModeSingleSegment !== 'none') {
         this.renderBothPanes(windowSegements[0]);
       } else {

@@ -1,0 +1,16 @@
+<div class="page">
+    <main #firstPage [style.transform]="transformation()">
+        <div class="page-content" *ngFor="let page of pages(); let i = index" [@pageTrigger]="pageState(i)">
+            <div class="page-text">
+                <h5 class="page-title" *ngIf="page.title">{{page.title}}</h5>
+                <div *ngFor="let paragraph of page.paragraphs">
+                    <h6 class="paragraph-heading" *ngIf="paragraph.heading">{{paragraph.heading}}</h6>
+                    <p class="paragraph-content">{{paragraph.content}}</p>
+                </div>
+            </div>
+            <footer>
+               - {{i}} -
+            </footer>
+        </div>
+    </main>
+</div>
