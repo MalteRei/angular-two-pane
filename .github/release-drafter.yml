@@ -15,5 +15,5 @@ template: |
   ## Getting Angular duo pane library
   Install with NPM: https://www.npmjs.com/package/angular-duo-pane
 
-  ## New in Angular duo pane library v$NEXT_PATCH_VERSION
+  ## New in Angular duo pane library
   $CHANGES
