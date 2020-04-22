@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build duo pane library
+    name: Build and publish duo pane library
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v1.4.2
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies 📦
         run: |
@@ -40,20 +41,8 @@ jobs:
           npx ng build duo-pane-library --prod
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
 
-  publish-npm:
-    name: Publish to NPM 🚀
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1.4.2
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
-        working-directory: ./duo-pane-workspace/dist/duo-pane-library
+      -name: Publish to NPM 🚀
+        - run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
+          working-directory: ./duo-pane-workspace/dist/duo-pane-library
