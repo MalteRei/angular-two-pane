@@ -44,7 +44,7 @@ jobs:
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
 
       -name: Publish to NPM 🚀
-        - run: npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
         working-directory: ./duo-pane-workspace/dist/duo-pane-library
