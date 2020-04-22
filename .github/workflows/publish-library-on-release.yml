@@ -33,6 +33,7 @@ jobs:
 
       - name: Read duo pane version from package.json 
         run: |
+          ls
           node -p "require('./package.json').version" > DUO_PANE_VERSION
           echo "Building duo pane v$(cat DUO_PANE_VERSION)"
         working-directory: ./duo-pane-workspace/projects/angular-duo-pane
