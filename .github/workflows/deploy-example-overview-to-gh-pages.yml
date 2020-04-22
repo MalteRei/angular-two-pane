@@ -49,8 +49,8 @@ jobs:
         
     - name: Build 🔨
       run: |
-        npx ng build --prod --base-href "https://gobonsai.de/"
-        cd dist/spendensport
+        npx ng build --prod --base-href "https://malterei.github.io/angular-two-pane/"
+        cd dist/example-overview
         cp index.html 404.html
       working-directory: ./examples/example-overview
 
@@ -60,7 +60,6 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: frontend/spendensport/dist/spendensport/
+        FOLDER: examples/example-overview/dist/example-overview/
         TARGET_FOLDER: .
-        CLEAN_EXCLUDE: '[".github", "Concept_and_Architecture", "SocialMediaCampaign", "frontend", ".gitignore", "CNAME", "CODE_OF_CONDUCT.md", "CONTRIBUTING.md", "LICENSE","README.md", "azure-pipelines.yml"]'
         CLEAN: true
