@@ -37,7 +37,7 @@ jobs:
       - name: ls
         run: |
           ls
-      working-directory: ./duo-pane-workspace/projects/angular-duo-pane
+        working-directory: ./duo-pane-workspace/projects/angular-duo-pane
 
 
       - name: Read duo pane version from package.json 
