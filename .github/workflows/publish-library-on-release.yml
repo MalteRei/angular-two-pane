@@ -34,9 +34,14 @@ jobs:
           npm install
         working-directory: ./duo-pane-workspace
 
-      - name: Read duo pane version from package.json 
+      - name: ls
         run: |
           ls
+      working-directory: ./duo-pane-workspace/projects/angular-duo-pane
+
+
+      - name: Read duo pane version from package.json 
+        run: |
           node -p "require('./package.json').version" > DUO_PANE_VERSION
           echo "Building duo pane v$(cat DUO_PANE_VERSION)"
         working-directory: ./duo-pane-workspace/projects/angular-duo-pane
