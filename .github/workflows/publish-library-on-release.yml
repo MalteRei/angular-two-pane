@@ -43,7 +43,7 @@ jobs:
           npx ng build duo-pane-library --prod
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
 
-      -name: Publish to NPM 🚀
+      - name: Publish to NPM 🚀
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
