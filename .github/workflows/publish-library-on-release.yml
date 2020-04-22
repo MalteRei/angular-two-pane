@@ -27,7 +27,7 @@ jobs:
         run: |
           npm install -g @angular/cli
           npm install
-        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+        working-directory: ./duo-pane-workspace
 
       - name: Read duo pane version from package.json 
         run: |
