@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DuoPaneProperties } from '../models/DuoPaneProperties';
-import { SpanningMode } from 'duo-pane-library';
+import { SpanningMode } from 'angular-duo-pane';
 
 @Injectable({
   providedIn: 'root'

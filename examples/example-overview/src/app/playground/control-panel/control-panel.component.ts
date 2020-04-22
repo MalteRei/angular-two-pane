@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlService } from '../services/control.service';
-import { SpanningMode } from 'duo-pane-library';
+import { SpanningMode } from 'angular-duo-pane';
 
 @Component({
   selector: 'app-control-panel',

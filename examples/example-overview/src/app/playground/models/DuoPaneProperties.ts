@@ -1,5 +1,5 @@
 import { IDuoPaneProperties } from './IDuoPaneProperties';
-import { SpanningMode } from 'duo-pane-library';
+import { SpanningMode } from 'angular-duo-pane';
 
 export class DuoPaneProperties implements IDuoPaneProperties {
     private PrimaryPanePercentageSingleSegment: number;

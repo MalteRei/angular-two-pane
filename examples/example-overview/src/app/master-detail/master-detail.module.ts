@@ -6,7 +6,7 @@ import { MasterComponent } from './master/master.component';
 import { DetailComponent } from './detail/detail.component';
 import { MasterDetailIconComponent } from './icons/master-detail-icon/master-detail-icon.component';
 import { MasterDetailComponent } from './master-detail/master-detail.component';
-import { DuoPaneLibraryModule } from 'duo-pane-library';
+import { AngularDuoPaneModule } from 'angular-duo-pane';
 import { TwoPageIconComponent } from './icons/two-page-icon/two-page-icon.component';
 import { DualScreenIconComponent } from './icons/dual-screen-icon/dual-screen-icon.component';
 
@@ -21,7 +21,7 @@ import { DualScreenIconComponent } from './icons/dual-screen-icon/dual-screen-ic
     DualScreenIconComponent
   ],
   imports: [
-    DuoPaneLibraryModule,
+    AngularDuoPaneModule,
     CommonModule,
     MasterDetailRoutingModule
   ]

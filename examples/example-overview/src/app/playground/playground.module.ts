@@ -5,7 +5,7 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
 import { PlaygroundComponent } from './playground/playground.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { FormsModule } from '@angular/forms';
-import { DuoPaneLibraryModule } from 'duo-pane-library';
+import { AngularDuoPaneModule } from 'angular-duo-pane';
 import { ClipboardDirective } from './directives/clipboard.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LiveCodeComponent } from './live-code/live-code.component';
@@ -17,7 +17,7 @@ import { SecondaryPlaygroundNinjaCatComponent } from './secondary-playground-nin
   declarations: [PlaygroundComponent, ControlPanelComponent, ClipboardDirective, LiveCodeComponent, CopyButtonComponent, SecondaryPlaygroundNinjaCatComponent],
   imports: [
     BrowserAnimationsModule,
-    DuoPaneLibraryModule,
+    AngularDuoPaneModule,
     FormsModule,
     CommonModule,
     PlaygroundRoutingModule

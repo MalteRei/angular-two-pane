@@ -56,7 +56,7 @@ export class DuoPaneDirective {
 
   }
 
-  @Output() public secondaryPaneVisibilityHandler = new EventEmitter<boolean>();
+  @Output() public readonly secondaryPaneVisibilityHandler = new EventEmitter<boolean>();
 
 
 

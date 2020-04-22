@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TwoPageRoutingModule } from './two-page-routing.module';
 import { BookComponent } from './book/book.component';
-import { DuoPaneLibraryModule } from 'duo-pane-library';
+import { AngularDuoPaneModule } from 'angular-duo-pane';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesComponent } from './pages/pages.component';
 
@@ -12,7 +12,7 @@ import { PagesComponent } from './pages/pages.component';
   declarations: [ BookComponent, PagesComponent],
   imports: [
     BrowserAnimationsModule,
-    DuoPaneLibraryModule,
+    AngularDuoPaneModule,
     CommonModule,
     TwoPageRoutingModule
   ]

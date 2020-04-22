@@ -1,4 +1,4 @@
-import { SpanningMode } from 'duo-pane-library';
+import { SpanningMode } from 'angular-duo-pane';
 
 export interface IDuoPaneProperties{
     primaryPanePercentageSingleSegment: number;

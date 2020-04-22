@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlService } from '../services/control.service';
-import { SpanningMode } from 'duo-pane-library';
+import { SpanningMode } from 'angular-duo-pane';
 
 
 
@@ -15,7 +15,7 @@ import { SpanningMode } from 'duo-pane-library';
 })
 export class LiveCodeComponent implements OnInit {
 
-  public liveCodeValue = "<ng-template [duoPane]              [secondaryPane]=\"secondaryBlock\"              twoPaneMinWidthSingleSegment=" + this.twoPaneMinWidthSingleSegment + "              twoPaneMinHeightSingleSegment=" + this.twoPaneMinHeightSingleSegment + "              twoPaneSpanningModeSingleSegment=\"" + this.twoPaneSpanningModeSingleSegment + "\"              primaryPanePercentageSingleSegment=" + this.primaryPanePercentageSingleSegment + "              ensureSecondaryPaneVisible=\"" + this.ensureSecondaryPaneVisible + "\">                  <!-- The component you want to display inside primary pane. -->          </ng-template>          <ng-template>              <!-- The component you want to display inside secondary pane. (🐱‍👤) -->          </ng-template>";
+  public liveCodeValue = "<ng-template [duoPane]              [secondaryPane]=\"secondaryBlock\"              twoPaneMinWidthSingleSegment=" + this.twoPaneMinWidthSingleSegment + "              twoPaneMinHeightSingleSegment=" + this.twoPaneMinHeightSingleSegment + "              twoPaneSpanningModeSingleSegment=\"" + this.twoPaneSpanningModeSingleSegment + "\"              primaryPanePercentageSingleSegment=" + this.primaryPanePercentageSingleSegment + "              ensureSecondaryPaneVisible=\"" + this.ensureSecondaryPaneVisible + "\">                  <!-- The component you want to display inside primary pane. -->          </ng-template>          <ng-template #secondaryBlock>              <!-- The component you want to display inside secondary pane. (🐱‍👤) -->          </ng-template>";
 
   constructor(private controlService: ControlService) { }
 
