@@ -1,6 +1,9 @@
 name: Publish duo pane library release
 
 on:
+  push:
+    branch:
+      - master
   release:
     types: [published]
 
