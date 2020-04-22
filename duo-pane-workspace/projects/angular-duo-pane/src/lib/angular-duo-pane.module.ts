@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { DuoPaneComponent, DuoPaneDirective } from 'duo-pane-library';
+import { DuoPaneComponent } from './components/duo-pane/duo-pane.component';
+import { DuoPaneDirective } from './directives/duo-pane.directive';
 
 
 

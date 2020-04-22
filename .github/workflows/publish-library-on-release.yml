@@ -1,9 +1,6 @@
 name: Publish duo pane library release
 
 on:
-  push:
-    branch:
-      - master
   release:
     types: [published]
 
@@ -33,12 +30,6 @@ jobs:
           npm install --save-dev @angular-devkit/build-angular
           npm install
         working-directory: ./duo-pane-workspace
-
-      - name: ls
-        run: |
-          ls
-        working-directory: ./duo-pane-workspace/projects/angular-duo-pane
-
 
       - name: Read duo pane version from package.json 
         run: |
