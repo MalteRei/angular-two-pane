@@ -1,4 +1,19 @@
-template: |
-  ## What’s Changed
+name-template: 'v$NEXT_PATCH_VERSION'
+tag-template: 'v$NEXT_PATCH_VERSION'
+categories:
+  - title: '🚀 Enhancement'
+    label: 'enhancement'
+  - title: '💣 Breaking Change'
+    label: 'breaking Change'
+  - title: '🐛 Bug Fixes'
+    label: 'bug'
+  - title: '📝 Documentation'
+    label: 'documentation'
 
+change-template: '- $TITLE (#$NUMBER)'
+template: |
+  ## Getting Angular duo pane library
+  Install with NPM: https://www.npmjs.com/package/angular-duo-pane
+
+  ## New in Angular duo pane library v$NEXT_PATCH_VERSION
   $CHANGES
