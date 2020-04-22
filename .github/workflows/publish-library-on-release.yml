@@ -27,6 +27,7 @@ jobs:
       - name: Install Dependencies 📦
         run: |
           npm install -g @angular/cli
+          npm install --save-dev @angular-devkit/build-angular
           npm install
         working-directory: ./duo-pane-workspace
 
@@ -38,6 +39,7 @@ jobs:
 
       - name: Build 🔨
         run: |
+          ls
           npx ng build duo-pane-library --prod
         working-directory: ./duo-pane-workspace/projects/duo-pane-library
 
