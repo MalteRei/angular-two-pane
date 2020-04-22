@@ -1,6 +1,6 @@
 {
-  "name": "duo-pane-library",
-  "version": "0.0.3",
+  "name": "angular-duo-pane",
+  "version": "0.1.0",
   "schematic": "./schematics/collection.json",
   "description": "A library for Angular projects to easily add a two pane view for desktops, foldables and dual screen devices.",
   "author": {

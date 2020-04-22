@@ -62,8 +62,4 @@ export class ControlPanelComponent implements OnInit {
     this.controlService.twoPaneSpanningModeSingleSegment = value;
 
   }
-
- 
-
-
 }

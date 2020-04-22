@@ -9,7 +9,7 @@ import { Segment } from '../models/Segment';
 export class DuoPaneInformationService {
 
   public static readonly ns = '__foldables__';
-  private Spanning: SpanningMode = SpanningMode.None;
+  private Spanning: SpanningMode = 'none';
   private FoldSize = 0;
   private BrowserShellSize = 0;
   private Segments: ISegment[] = null;
@@ -19,7 +19,7 @@ export class DuoPaneInformationService {
 
   constructor() {
 
-    this.Spanning = sessionStorage.getItem(`${DuoPaneInformationService.ns}-spanning`) as SpanningMode || SpanningMode.None;
+    this.Spanning = sessionStorage.getItem(`${DuoPaneInformationService.ns}-spanning`) as SpanningMode || 'none';
     this.FoldSize = +sessionStorage.getItem(`${DuoPaneInformationService.ns}-fold-size`) || 0;
     this.BrowserShellSize = +sessionStorage.getItem(`${DuoPaneInformationService.ns}-browser-shell-size`) || 0;
 
@@ -119,12 +119,12 @@ export class DuoPaneInformationService {
     if (this.Segments !== null && this.Segments.length > 0) {
       return this.Segments;
     }
-    if (this.spanning === SpanningMode.None) {
+    if (this.spanning === 'none') {
       return [
         new Segment(window.innerWidth, window.innerHeight, 0, 0)
       ];
     }
-    if (this.spanning === SpanningMode.SingleFoldHorizontal) {
+    if (this.spanning === 'single-fold-horizontal') {
       const screenCenter = (window.innerHeight - this.browserShellSize) / 2;
       const width = window.innerWidth;
       return [
@@ -133,7 +133,7 @@ export class DuoPaneInformationService {
         new Segment(width, window.innerHeight, screenCenter + this.foldSize / 2, 0)
       ];
     }
-    if (this.spanning === SpanningMode.SingleFoldVertical) {
+    if (this.spanning === 'single-fold-vertical') {
       const width = window.innerWidth / 2 - this.foldSize / 2;
       const height = window.innerHeight;
       return [

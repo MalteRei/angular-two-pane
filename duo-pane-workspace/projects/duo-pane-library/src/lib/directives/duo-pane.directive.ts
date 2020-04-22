@@ -16,7 +16,7 @@ export class DuoPaneDirective {
   /* Variables set to control two pane if only one window segment is available-*/
   private TwoPaneMinWidthSingleSegment = 0;
   private TwoPaneMinHeightSingleSegment = 0;
-  private TwoPaneSpanningModeSingleSegment = SpanningMode.None;
+  private TwoPaneSpanningModeSingleSegment = 'none';
   private PrimaryPanePercentageSingleSegment = 50;
   public get primaryPanePercentageSingleSegment() {
     return this.PrimaryPanePercentageSingleSegment;
