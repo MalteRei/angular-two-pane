@@ -35,16 +35,15 @@ jobs:
         run: |
           node -p "require('./package.json').version" > DUO_PANE_VERSION
           echo "Building duo pane v$(cat DUO_PANE_VERSION)"
-        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+        working-directory: ./duo-pane-workspace/projects/angular-duo-pane
 
       - name: Build 🔨
         run: |
-          ls
-          npx ng build duo-pane-library --prod
-        working-directory: ./duo-pane-workspace/projects/duo-pane-library
+          npx ng build angular-duo-pane --prod
+        working-directory: ./duo-pane-workspace/projects/angular-duo-pane
 
       - name: Publish to NPM 🚀
-        run: npm publish
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}^
-        working-directory: ./duo-pane-workspace/dist/duo-pane-library
+        working-directory: ./duo-pane-workspace/dist/angular-duo-pane

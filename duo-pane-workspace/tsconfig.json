@@ -16,13 +16,13 @@
       "dom"
     ],
     "paths": {
-      // paths are relative to `baseUrl` path.
-      /*"@angular/*": [
-        "./node_modules/@angular/*"
-      ],*/
       "duo-pane-library": [
         "./dist/duo-pane-library/duo-pane-library",
         "./dist/duo-pane-library"
+      ],
+      "angular-duo-pane": [
+        "dist/angular-duo-pane/angular-duo-pane",
+        "dist/angular-duo-pane"
       ]
     }
   },
