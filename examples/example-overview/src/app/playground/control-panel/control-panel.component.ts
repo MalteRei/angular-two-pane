@@ -6,9 +6,7 @@ import { SpanningMode } from 'angular-duo-pane';
   selector: 'app-control-panel',
   templateUrl: './control-panel.component.html',
   styleUrls: [
-    './control-panel.component.css',
-    // Add office ui fabric core for icons: https://developer.microsoft.com/en-us/fabric#/styles/web/icons
-    '../../../../node_modules/office-ui-fabric-core/dist/css/fabric.min.css'
+    './control-panel.component.css'
   ]
 })
 export class ControlPanelComponent implements OnInit {

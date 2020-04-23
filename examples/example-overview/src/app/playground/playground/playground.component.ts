@@ -10,6 +10,11 @@ import { SpanningMode } from 'angular-duo-pane';
 })
 export class PlaygroundComponent implements OnInit {
 
+  private ShowCodeOnPrimaryScreen = true;
+  public get showCodeOnPrimaryScreen() {
+    return this.ShowCodeOnPrimaryScreen;
+  }
+
   constructor(private controlService: ControlService) { }
 
   ngOnInit(): void {
@@ -36,5 +41,9 @@ export class PlaygroundComponent implements OnInit {
   public get twoPaneSpanningModeSingleSegment(): SpanningMode {
     console.dir(this.controlService.twoPaneSpanningModeSingleSegment);
     return this.controlService.twoPaneSpanningModeSingleSegment;
+  }
+
+  public secondaryPaneVisibilityChangedEventHandler(visible: boolean): void {
+    this.ShowCodeOnPrimaryScreen = !visible;
   }
 }

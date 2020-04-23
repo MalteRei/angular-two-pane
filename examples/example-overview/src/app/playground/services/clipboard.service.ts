@@ -1,6 +1,6 @@
 // Import the core angular services.
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from "@angular/core";
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -47,13 +47,13 @@ export class ClipboardService {
           // force a selection.
           // --
           // NOTE: This Textarea is being rendered off-screen.
-          textarea = this.dom.createElement("textarea");
-          textarea.style.height = "0px";
-          textarea.style.left = "-100px";
-          textarea.style.opacity = "0";
-          textarea.style.position = "fixed";
-          textarea.style.top = "-100px";
-          textarea.style.width = "0px";
+          textarea = this.dom.createElement('textarea');
+          textarea.style.height = '0px';
+          textarea.style.left = '-100px';
+          textarea.style.opacity = '0';
+          textarea.style.position = 'fixed';
+          textarea.style.top = '-100px';
+          textarea.style.width = '0px';
           this.dom.body.appendChild(textarea);
 
           // Set and select the value (creating an active Selection range).
@@ -61,7 +61,7 @@ export class ClipboardService {
           textarea.select();
 
           // Ask the browser to copy the current selection to the clipboard.
-          this.dom.execCommand("copy");
+          this.dom.execCommand('copy');
 
           resolve(value);
 

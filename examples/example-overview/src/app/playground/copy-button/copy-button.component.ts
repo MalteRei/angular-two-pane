@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-copy-button',
   templateUrl: './copy-button.component.html',
   styleUrls: [
-    './copy-button.component.css',
-    // Add office ui fabric core for icons: https://developer.microsoft.com/en-us/fabric#/styles/web/icons
-    '../../../../node_modules/office-ui-fabric-core/dist/css/fabric.min.css'
+    './copy-button.component.css'
   ],
   animations: [
     trigger('copyState', [
@@ -27,7 +25,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 export class CopyButtonComponent implements OnInit {
 
   private IsCopied = false;
-  @Input() public valueToCopy: string = '';
+  @Input() public valueToCopy = '';
 
   constructor() { }
 
@@ -39,9 +37,9 @@ export class CopyButtonComponent implements OnInit {
   }
 
   public successCopied(event: Event) {
-    if(!this.IsCopied) {
+    if (!this.IsCopied) {
       this.IsCopied = true;
-      setTimeout(()=> {
+      setTimeout(() => {
         this.IsCopied = false;
       }, 2000);
     }

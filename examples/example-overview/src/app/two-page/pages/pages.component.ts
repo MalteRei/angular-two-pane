@@ -126,7 +126,10 @@ export class PagesComponent implements OnDestroy, AfterViewInit {
     /* // [END addlisteners] */
   }
 
-  /*Swipe gestures source: https://github.com/google/WebFundamentals/blob/master/src/content/en/fundamentals/design-and-ux/input/touch/_code/touch-demo-1.html#L179*/
+  /*
+  Swipe gestures source:
+  https://github.com/google/WebFundamentals/blob/master/src/content/en/fundamentals/design-and-ux/input/touch/_code/touch-demo-1.html#L179
+  */
 
 
 

@@ -1,14 +1,14 @@
 // Import the core angular services.
-import { Directive, HostListener, EventEmitter, Input, Output } from "@angular/core";
+import { Directive, HostListener, EventEmitter, Input, Output } from '@angular/core';
 
 // Import the application components and services.
-import { ClipboardService } from "../services/clipboard.service";
+import { ClipboardService } from '../services/clipboard.service';
 
 // This directive acts as a simple glue layer between the given [clipboard] property
 // and the underlying ClipboardService. Upon the (click) event, the [clipboard] value
 // will be copied to the ClipboardService and a (clipboardCopy) event will be emitted.
 @Directive({
-  selector: "[appClipboard]"
+  selector: '[appClipboard]'
 })
 /*
 * @author https://www.bennadel.com/blog/3235-creating-a-simple-copy-to-clipboard-directive-in-angular-2-4-9.htm
@@ -28,7 +28,7 @@ export class ClipboardDirective {
     this.clipboardService = clipboardService;
     this.copyEvent = new EventEmitter();
     this.errorEvent = new EventEmitter();
-    this.clipboardValue = "";
+    this.clipboardValue = '';
 
   }
 

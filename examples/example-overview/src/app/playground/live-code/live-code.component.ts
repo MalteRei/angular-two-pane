@@ -8,14 +8,13 @@ import { SpanningMode } from 'angular-duo-pane';
   selector: 'app-live-code',
   templateUrl: './live-code.component.html',
   styleUrls: [
-    './live-code.component.css',
-    // Add office ui fabric core for icons: https://developer.microsoft.com/en-us/fabric#/styles/web/icons
-    '../../../../node_modules/office-ui-fabric-core/dist/css/fabric.min.css'
+    './live-code.component.css'
   ]
 })
 export class LiveCodeComponent implements OnInit {
 
-  public liveCodeValue = "<ng-template [duoPane]              [secondaryPane]=\"secondaryBlock\"              twoPaneMinWidthSingleSegment=" + this.twoPaneMinWidthSingleSegment + "              twoPaneMinHeightSingleSegment=" + this.twoPaneMinHeightSingleSegment + "              twoPaneSpanningModeSingleSegment=\"" + this.twoPaneSpanningModeSingleSegment + "\"              primaryPanePercentageSingleSegment=" + this.primaryPanePercentageSingleSegment + "              ensureSecondaryPaneVisible=\"" + this.ensureSecondaryPaneVisible + "\">                  <!-- The component you want to display inside primary pane. -->          </ng-template>          <ng-template #secondaryBlock>              <!-- The component you want to display inside secondary pane. (🐱‍👤) -->          </ng-template>";
+  public liveCodeValue = '<ng-template [duoPane]              [secondaryPane]="secondaryBlock"              twoPaneMinWidthSingleSegment='
+    + this.twoPaneMinWidthSingleSegment + '              twoPaneMinHeightSingleSegment=' + this.twoPaneMinHeightSingleSegment + '              twoPaneSpanningModeSingleSegment="' + this.twoPaneSpanningModeSingleSegment + '"              primaryPanePercentageSingleSegment=' + this.primaryPanePercentageSingleSegment + '              ensureSecondaryPaneVisible="' + this.ensureSecondaryPaneVisible + '">                  <!-- The component you want to display inside primary pane. -->          </ng-template>          <ng-template #secondaryBlock>              <!-- The component you want to display inside secondary pane. (🐱‍👤) -->          </ng-template>';
 
   constructor(private controlService: ControlService) { }
 

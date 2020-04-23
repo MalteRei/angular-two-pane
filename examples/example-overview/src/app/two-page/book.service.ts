@@ -11,12 +11,25 @@ export class BookService {
   private Book = new Book('Introduction to dual-screen devices', [
     new Page('Introduction to dual-screen devices', []),
     new Page(undefined, [
-      new Paragraph(undefined, 'Dual-screen devices are portable multi-posture devices with two symmetric screens that work together in unique ways to provide productivity in a flexible form factor.'),
-      new Paragraph(undefined, 'With dual-screen devices such as Microsoft\'s Surface Neo and Surface Duo, people can get things done on-the-go faster than ever: take notes on one screen and review the full project proposal on the other while in transit; sit down at a table to write a thoughtful email using a software or hardware keyboard while waiting for lunch; and then watch a video, browse the web, or read a book as you get back to your life.'),
-      new Paragraph(undefined, 'Although dual-screen devices unlock new possibilities for your apps, your existing apps will work as expected on the devices, and there are improvements that you will get without doing any work. This documentation will point those out, while also showing new ways to enhance your app experience by making your app aware of the dual-screen nature of the device.'),
-      new Paragraph(undefined, 'While there are different dual-screen devices now in the market and more coming, we believe there can be a common way of approaching the design of apps for these devices. We hope this will help your app reach more devices without re-designing from scratch for every device.'),
-      new Paragraph(undefined, 'In this article, we talk about common design patterns and concepts that are applicable regardless of the operating system you target or the development language you use. You will still need to create separate apps using applicable technologies and SDKs that you are able to deploy to Android, Windows, or both. For platform specific information about developing apps for dual-screen devices, see Develop for Android or Develop for Windows.'),
-      new Paragraph(undefined, 'The technology is still evolving and our guidance here may change as we progress. Your feedback is welcome.')
+      new Paragraph(undefined, 'Dual-screen devices are portable multi-posture devices with two symmetric screens'
+      + ' that work together in unique ways to provide productivity in a flexible form factor.'),
+      new Paragraph(undefined, 'With dual-screen devices such as Microsoft\'s Surface Neo and Surface Duo, people'
+      + ' can get things done on-the-go faster than ever: take notes on one screen and review the full project proposal'
+      + ' on the other while in transit; sit down at a table to write a thoughtful email using a software or hardware '
+      + 'keyboard while waiting for lunch; and then watch a video, browse the web, or read a book as you get back to your life.'),
+      new Paragraph(undefined, 'Although dual-screen devices unlock new possibilities for your apps, your existing'
+      + ' apps will work as expected on the devices, and there are improvements that you will get without doing any work.'
+      + ' This documentation will point those out, while also showing new ways to enhance your app experience by making'
+      + ' your app aware of the dual-screen nature of the device.'),
+      new Paragraph(undefined, 'While there are different dual-screen devices now in the market and more coming, we'
+      + ' believe there can be a common way of approaching the design of apps for these devices. We hope this will help'
+      + ' your app reach more devices without re-designing from scratch for every device.'),
+      new Paragraph(undefined, 'In this article, we talk about common design patterns and concepts that are applicable'
+      + ' regardless of the operating system you target or the development language you use. You will still need to create'
+      + ' separate apps using applicable technologies and SDKs that you are able to deploy to Android, Windows, or both. For platform specific'
+      + ' information about developing apps for dual-screen devices, see Develop for Android or Develop for Windows.'),
+      new Paragraph(undefined, 'The technology is still evolving and our guidance here may change as we progress. '
+      + 'Your feedback is welcome.')
     ]),
     new Page('Dual-screen overview', [
       new Paragraph(undefined, 'Dual-screen devices can come in a range of hardware and industrial design variations. The recently announced Surface Neo and Surface Duo are intended to help define the category, but other devices may come with larger displays or varying hinge designs. As you design your apps, keep in mind that you should avoid designing to the specifications of any specific devices available today.'),

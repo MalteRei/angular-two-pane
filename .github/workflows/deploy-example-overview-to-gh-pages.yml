@@ -38,7 +38,11 @@ jobs:
         npm install
       working-directory: ./examples/example-overview
 
-        
+      - name: Code analysis 👀
+      run: |
+        npx ng lint
+      working-directory: ./examples/example-overview
+
     - name: Build 🔨
       run: |
         npx ng build --prod --base-href "https://malterei.github.io/angular-two-pane/"

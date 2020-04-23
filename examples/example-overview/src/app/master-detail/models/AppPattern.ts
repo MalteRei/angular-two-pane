@@ -1,7 +1,7 @@
 import { IAppPattern } from './IAppPattern';
 import { Icons } from './Icons';
 
-export class AppPattern implements IAppPattern{
+export class AppPattern implements IAppPattern {
     private Name: string;
     public get name(): string {
         return this.Name;
@@ -46,6 +46,6 @@ export class AppPattern implements IAppPattern{
         this.lookAtLink = lookAtLink;
         this.icon = icon;
     }
-    
+
 
 }

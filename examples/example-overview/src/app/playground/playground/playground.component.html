@@ -4,12 +4,17 @@
     [primaryPanePercentageSingleSegment]="primaryPanePercentageSingleSegment"
     [twoPaneMinWidthSingleSegment]="twoPaneMinWidthSingleSegment"
     [twoPaneMinHeightSingleSegment]="twoPaneMinHeightSingleSegment"
-    [twoPaneSpanningModeSingleSegment]="twoPaneSpanningModeSingleSegment">
+    [twoPaneSpanningModeSingleSegment]="twoPaneSpanningModeSingleSegment"
+    (secondaryPaneVisibilityHandler)="secondaryPaneVisibilityChangedEventHandler($event)">
     <div class="container">
         <app-control-panel></app-control-panel>
-        <app-live-code></app-live-code>    
+        <app-live-code *ngIf="showCodeOnPrimaryScreen"></app-live-code>    
     </div>
 </ng-template>
 <ng-template #secondaryBlock>
-    <app-secondary-playground-ninja-cat></app-secondary-playground-ninja-cat>
+    <div class="container">
+        <app-live-code class="flex-grow" *ngIf="!showCodeOnPrimaryScreen"></app-live-code>
+        <app-secondary-playground-ninja-cat></app-secondary-playground-ninja-cat>
+    </div>
+    
 </ng-template>

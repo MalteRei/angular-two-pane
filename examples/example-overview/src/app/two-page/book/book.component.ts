@@ -5,8 +5,7 @@ import { BookService } from '../book.service';
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: [
-    './book.component.css',
-    '../../../../node_modules/office-ui-fabric-core/dist/css/fabric.min.css'// Add office ui fabric core for icons: https://developer.microsoft.com/en-us/fabric#/styles/web/icons
+    './book.component.css'
   ]
 })
 export class BookComponent implements OnInit {
