@@ -1,1 +1,0 @@
-# angular-two-pane
