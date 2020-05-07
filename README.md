@@ -169,7 +169,7 @@ Add directive to a template of a component to display as two pane:
 
 Do you want to try out Angular Duo Pane library or how dual screen patterns can work on the web. Check out the [the showcase](https://malterei.github.io/angular-two-pane/). More examples will be added to the list so check back frequently.
 
-## Contribute to Fluent UI React
+## Contribute to Angular Duo Pane
 
 Please take a look at our [contribution guidelines](CONTRIBUTING.md) for more info.
 Feel free to contact us if you have questions.
